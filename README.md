@@ -48,7 +48,7 @@ An interactive Streamlit dashboard that tells the complete story of Barbados' fi
 
 ## 🚀 Live Demo
 
-[**View the live dashboard**](https://your-streamlit-app-url.com)
+https://jpkgxrvp7wwvkczaewroxc.streamlit.app/
 
 ---
 
@@ -212,7 +212,7 @@ The following made this project possible:
 ## 📞 Contact & Support
 
 - **GitHub Issues**: [Link to issues page]
-- **Email**: [your-email@example.com]
+- **Email**: matthew.aa.blackman@gmail.com
 
 ---
 
