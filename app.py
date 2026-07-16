@@ -7,13 +7,15 @@
 # Each year includes detailed context, key issues, special audits, and
 # financial metrics with historical perspective.
 #
-# Version: 17.0 - Fixed Navigation Edition
+# Version: 17.1 - Barbados Theme Edition
 # Date: July 2026
 #
-# FIXES:
-# 1. "Click to explore" now works properly with Streamlit buttons
-# 2. Navigation between Full Story and Year views
-# 3. Session state management for seamless transitions
+# UPDATES:
+# 1. Enhanced Barbados-themed main heading
+# 2. Improved color scheme reflecting Barbados flag colors
+# 3. "Click to explore" now works properly with Streamlit buttons
+# 4. Navigation between Full Story and Year views
+# 5. Session state management for seamless transitions
 # ============================================================================
 
 import streamlit as st
@@ -40,13 +42,29 @@ st.set_page_config(
 st.markdown("""
 <style>
 .main-header {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     font-weight: 700;
     margin-bottom: 0.2rem;
     color: #00267F;
+    background: linear-gradient(90deg, #00267F 0%, #FFC726 50%, #00267F 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+    letter-spacing: 0.5px;
+    text-align: center;
+    padding: 10px 0;
+}
+.main-subheader {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-top: -5px;
+    margin-bottom: 15px;
+    font-style: italic;
     background: linear-gradient(90deg, #00267F 0%, #FFC726 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-weight: 500;
 }
 .year-header {
     font-size: 1.8rem;
@@ -231,6 +249,12 @@ st.markdown("""
 .act-title { font-size: 1.4rem; font-weight: 700; }
 .act-subtitle { font-size: 1rem; }
 .act-count { font-size: 0.9rem; font-weight: 600; }
+.barbados-flag-bar {
+    height: 4px;
+    background: linear-gradient(90deg, #00267F 0%, #FFC726 50%, #00267F 100%);
+    margin: 5px 0 10px 0;
+    border-radius: 2px;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -802,13 +826,20 @@ def render_full_story():
     # Set a flag to track we're in story view
     st.session_state['view_mode'] = 'story'
     
+    # Main header with Barbados theme
+    st.markdown("""
+    <div class="main-header">🇧🇧 Barbados: 24 Years of Financial Accountability</div>
+    <div class="main-subheader">From Clean to Crisis — The Complete Audit Story 2003-2026</div>
+    <div class="barbados-flag-bar"></div>
+    """, unsafe_allow_html=True)
+    
     st.markdown("""
     <div style="background:#f0f7ff; padding:20px; border-radius:10px; border-left:5px solid #00267F; margin:15px 0;">
         <h3 style="color:#00267F; margin-top:0;">📖 The Full Story: Barbados' 24-Year Journey</h3>
         <p style="font-size:1.05rem; margin-bottom:0;">
         This is the complete narrative of Barbados' financial accountability journey, told through 
         <strong>24 years of Auditor General's reports</strong>. From clean opinions to the breaking point,
-        from crisis to the path forward. Each chapter tells a part of the story. Click "Explore" on any year
+        from crisis to the path forward. Each chapter tells a part of the story. Click <strong>"Explore"</strong> on any year
         to dive into the details.
         </p>
     </div>
@@ -885,8 +916,12 @@ def render_year_view(year):
     emoji = get_opinion_emoji(opinion)
     color = get_opinion_color(opinion)
 
-    # Header
-    st.markdown(f'<div class="main-header">🇧🇧 Barbados Financial Accountability</div>', unsafe_allow_html=True)
+    # Header with Barbados theme
+    st.markdown("""
+    <div class="main-header">🇧🇧 Barbados: 24 Years of Financial Accountability</div>
+    <div class="barbados-flag-bar"></div>
+    """, unsafe_allow_html=True)
+    
     st.markdown(f'<div class="year-header">📌 Year {year}: {chapter["title"]}</div>', unsafe_allow_html=True)
     st.caption(f'"{chapter["tagline"]}"')
 
