@@ -7,16 +7,17 @@
 # Each year includes detailed context, key issues, special audits, and
 # financial metrics with historical perspective.
 #
-# Version: 17.2 - Realistic Financial Data Edition
+# Version: 17.3 - Updated with Actual 2022 & 2023 Data
 # Date: July 2026
 #
 # UPDATES:
-# 1. Realistic revenue and expenditure breakdowns based on actual data
-# 2. Year-by-year variation in financial composition
-# 3. COVID-19 impact reflected in the data
-# 4. More detailed categories (7 each for revenue and expenditure)
-# 5. Barbados-themed main heading
-# 6. Working "Click to Explore" navigation
+# 1. Updated 2022 and 2023 financial data from actual Auditor General's reports
+# 2. 2022: Revenue $2.701B, Expenditure $3.374B, Deficit -$0.673B, Debt $13.288B
+# 3. 2023: Revenue $3.209B, Expenditure $3.294B, Deficit -$0.085B, Debt $13.985B
+# 4. 2022 Tax Receivables: $2.61B (actual), 2023 Tax Receivables: $2.43B (actual)
+# 5. Realistic revenue and expenditure breakdowns based on actual data
+# 6. Barbados-themed main heading
+# 7. Working "Click to Explore" navigation
 # ============================================================================
 
 import streamlit as st
@@ -282,8 +283,8 @@ FINANCIAL_DATA = {
     2019: {'revenue': 3.233, 'expenditure': 3.586, 'deficit': -0.354, 'debt': 12.740, 'opinion': 'Adverse', 'debt_pct': 122.0},
     2020: {'revenue': 3.582, 'expenditure': 3.863, 'deficit': -0.281, 'debt': 13.985, 'opinion': 'Adverse', 'debt_pct': 130.0},
     2021: {'revenue': 2.770, 'expenditure': 3.375, 'deficit': -0.605, 'debt': 12.947, 'opinion': 'Adverse', 'debt_pct': 125.0},
-    2022: {'revenue': 3.484, 'expenditure': 3.586, 'deficit': -0.102, 'debt': 13.984, 'opinion': 'Adverse', 'debt_pct': 130.0},
-    2023: {'revenue': 3.209, 'expenditure': 3.294, 'deficit': -0.085, 'debt': 14.930, 'opinion': 'Adverse', 'debt_pct': 135.0},
+    2022: {'revenue': 2.701, 'expenditure': 3.374, 'deficit': -0.673, 'debt': 13.288, 'opinion': 'Adverse', 'debt_pct': 127.0},
+    2023: {'revenue': 3.209, 'expenditure': 3.294, 'deficit': -0.085, 'debt': 13.985, 'opinion': 'Adverse', 'debt_pct': 135.0},
     2024: {'revenue': 3.206, 'expenditure': 3.437, 'deficit': -0.231, 'debt': 14.960, 'opinion': 'Pending', 'debt_pct': 136.0},
     2025: {'revenue': 3.300, 'expenditure': 3.520, 'deficit': -0.220, 'debt': 15.100, 'opinion': 'Pending', 'debt_pct': 137.0},
     2026: {'revenue': 3.400, 'expenditure': 3.600, 'deficit': -0.200, 'debt': 15.200, 'opinion': 'Pending', 'debt_pct': 138.0},
@@ -369,8 +370,8 @@ YEAR_CONTEXT = {
     2019: "Adverse Opinion continued. Cash overstatements identified ($115M). The BWA Smart Meter project showed $1.49B in contracts with 90% without public tender.",
     2020: "COVID-19 impacted audits. $1.8B in fixed assets excluded from balance sheet. $1.7B in land valuations unverified. Poverty Eradication Fund showed $24M disbursed without criteria.",
     2021: "Deficit peaked at $685M. 6th consecutive Adverse Opinion. The PRDS performance review system was still not fully implemented after 20 years.",
-    2022: "Asset discrepancies identified ($719M). Tax receivables of $2.43B flagged as unverified. Steel Houses procurement costs escalated from $29M to $52.7M.",
-    2023: "THE CRISIS DEEPENS. $2.43B tax receivables unverified (NEW issue). $719M asset discrepancy. 6th consecutive Adverse Opinion. HOPE Inc built only 110 houses in 4 years.",
+    2022: "Adverse Opinion continues. Tax receivables of $2.61B reported, but $120M in cumulative interest omitted. Income and Corporation taxes prior to 2013 excluded. Pension liabilities not included. SOE consolidation still not done.",
+    2023: "THE CRISIS DEEPENS. $2.43B tax receivables could not be confirmed due to insufficient supporting documentation. $719M asset discrepancy between financial statements and subsidiary records. $115M cash overstatement. 6th consecutive Adverse Opinion.",
     2024: "IT audit reveals system failures at Licensing Authority ($8M spent, systems not operational after 4 years). Budget overruns on technology projects.",
     2025: "Consolidated financial statements still outstanding. Pension liability not disclosed. HOPE Inc's PV model still not operational after 4 years.",
     2026: "Constitutional reform recommendation for audit independence. SOE consolidation and asset verification remain priority focus areas."
@@ -503,15 +504,17 @@ SPECIAL_AUDITS = {
     },
     2022: {
         'audits': [
-            {'title': 'Steel Houses Procurement', 'summary': 'Project cost increased from $29M to $52.7M', 'details': '150 steel-framed housing units for Hurricane Elsa victims. Costs escalated significantly.', 'severity': 'High'}
+            {'title': 'Tax Receivables Review', 'summary': '$2.61B tax receivables, $120M interest omitted', 'details': 'Tax receivables of $2.61B did not include $120M in cumulative interest. Income and Corporation taxes prior to 2013 excluded. Bank reconciliations not done for 15+ years.', 'severity': 'Critical'},
+            {'title': 'Other Capital Assets', 'summary': '$2.19B in assets, road infrastructure excluded', 'details': 'Other Capital Assets of $2.19B did not include Road Infrastructure and Heritage assets. Asset valuations incomplete.', 'severity': 'High'}
         ],
-        'issues': ['Asset discrepancies ($719M)', 'Tax receivables $2.43B unverified']
+        'issues': ['Adverse Opinion continues', 'Tax receivables $2.61B unverified', 'Pension liabilities not included', 'SOE consolidation not done']
     },
     2023: {
         'audits': [
-            {'title': 'HOPE Inc Housing Programs', 'summary': '110 houses in 4 years, PV model not implemented', 'details': 'Photovoltaic panels not generating revenue. Model not successfully implemented.', 'severity': 'High'}
+            {'title': 'Tax Receivables Unconfirmed', 'summary': '$2.43B tax receivables could not be confirmed', 'details': 'Tax Receivables of $2.43B could not be confirmed due to absence of sufficient supporting documentation. Bad Debt Expense of $68.28M also unconfirmed.', 'severity': 'Critical'},
+            {'title': 'Asset Discrepancy', 'summary': '$719M difference in Other Capital Assets', 'details': 'Other Capital Assets showed $719M difference between financial statements and subsidiary records. Cash and Financial Investments overstated by $115M and $147M respectively.', 'severity': 'Critical'}
         ],
-        'issues': ['$2.43B tax receivables unverified', '$719M asset discrepancy', '6th consecutive Adverse Opinion']
+        'issues': ['🔴 CRISIS DEEPENS', '$2.43B tax receivables unconfirmed', '$719M asset discrepancy', '6th consecutive Adverse Opinion']
     },
     2024: {
         'audits': [
@@ -556,8 +559,8 @@ CHAPTER_TITLES = {
     2019: {"title": "The Smart Meter Scandal", "tagline": "$1.49B in contracts, 90% without tender."},
     2020: {"title": "COVID & Missing Assets", "tagline": "$1.8B fixed assets excluded."},
     2021: {"title": "The Peak of Deficit", "tagline": "Deficit peaks at $685M."},
-    2022: {"title": "The $2.43B Question", "tagline": "Tax receivables flagged as unverified."},
-    2023: {"title": "THE CRISIS DEEPENS", "tagline": "6th consecutive Adverse Opinion."},
+    2022: {"title": "The $2.61B Question", "tagline": "Tax receivables unverified. $120M interest omitted."},
+    2023: {"title": "THE CRISIS DEEPENS", "tagline": "$2.43B tax receivables unconfirmed. 6th Adverse Opinion."},
     2024: {"title": "Technology Failures", "tagline": "$8M spent, systems not operational."},
     2025: {"title": "Still Waiting", "tagline": "Consolidated statements still outstanding."},
     2026: {"title": "Constitutional Reform", "tagline": "The path forward for audit independence."}
@@ -1191,13 +1194,13 @@ def render_year_view(year):
 
     if special.get('issues'):
         for issue in special['issues']:
-            if 'ADVERSE' in issue.upper() or 'FIRST' in issue.upper():
+            if 'ADVERSE' in issue.upper() or 'FIRST' in issue.upper() or 'CRISIS' in issue.upper():
                 st.markdown(f"""
                 <div class="issue-critical">
                     <span style="color:#DC2626;font-weight:bold;">🔴 CRITICAL:</span> {issue}
                 </div>
                 """, unsafe_allow_html=True)
-            elif any(x in issue.lower() for x in ['unverified', 'discrepancy', 'not done', 'failure', 'crisis', 'still', 'hidden']):
+            elif any(x in issue.lower() for x in ['unverified', 'discrepancy', 'not done', 'failure', 'crisis', 'still', 'hidden', 'unconfirmed']):
                 st.markdown(f"""
                 <div class="issue-warning">
                     <span style="color:#D97706;font-weight:bold;">⚠️ WARNING:</span> {issue}
