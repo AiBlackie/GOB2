@@ -7,17 +7,16 @@
 # Each year includes detailed context, key issues, special audits, and
 # financial metrics with historical perspective.
 #
-# Version: 17.3 - Updated with Actual 2022 & 2023 Data
+# Version: 17.4 - Enhanced 2005 & 2006 Content
 # Date: July 2026
 #
 # UPDATES:
-# 1. Updated 2022 and 2023 financial data from actual Auditor General's reports
-# 2. 2022: Revenue $2.701B, Expenditure $3.374B, Deficit -$0.673B, Debt $13.288B
-# 3. 2023: Revenue $3.209B, Expenditure $3.294B, Deficit -$0.085B, Debt $13.985B
-# 4. 2022 Tax Receivables: $2.61B (actual), 2023 Tax Receivables: $2.43B (actual)
-# 5. Realistic revenue and expenditure breakdowns based on actual data
-# 6. Barbados-themed main heading
-# 7. Working "Click to Explore" navigation
+# 1. Enhanced 2005 context with Glendairy Prison fire details
+# 2. Enhanced 2006 context with SSA vehicle crisis and St. Leonard's School
+# 3. Updated special audits for 2005 and 2006
+# 4. Updated 2022 and 2023 financial data from actual Auditor General's reports
+# 5. Barbados-themed main heading
+# 6. Working "Click to Explore" navigation
 # ============================================================================
 
 import streamlit as st
@@ -348,13 +347,13 @@ PROVERB_MEANINGS = {
 }
 
 # ============================================================================
-# YEAR CONTEXT
+# YEAR CONTEXT - ENHANCED 2005 & 2006
 # ============================================================================
 YEAR_CONTEXT = {
     2003: "The beginning of the clean audit era. Barbados' financial management was functioning well with no major issues identified. The foundation was being built for the years ahead.",
     2004: "The second consecutive clean opinion. Financial management remained strong. The announcement of accrual accounting signaled a commitment to international standards.",
-    2005: "The third clean opinion. However, warning signs emerged: the Glendairy Prison fire exposed underinsurance, and VAT refund delays reached $45M+. The arrears crisis ($442M) began to surface.",
-    2006: "The fourth clean opinion. The Sanitation Service Authority vehicle fleet crisis emerged. Over $2M was reported stolen or missing from various ministries.",
+    2005: "The third clean opinion. However, warning signs emerged: the Glendairy Prison fire in March 2005 exposed severe underinsurance — the property was insured for less than $1M despite being valued at $43.2M. VAT refund delays reached $45M+ with $10M in interest owed. The arrears crisis ($442M) began to surface across Inland Revenue ($161M), Customs ($172M), and Land Tax ($105M).",
+    2006: "The fourth clean opinion. However, serious issues emerged: the Sanitation Service Authority operated with as few as 25 of 57 compactor vehicles, causing widespread collection delays. Over $2M was reported stolen or missing from ministries, including $1M from the Psychiatric Hospital. The St. Leonard's Boys' School project — 9 years underway, over $15M spent — remained incomplete and CDB loan funds were lost.",
     2007: "The fifth and final clean opinion. This was the last year of unqualified audit opinions. The Newton Business Park PPP failure ($18.5M loss) foreshadowed challenges ahead.",
     2008: "The turning point. IPSAS adoption was incomplete, and the first Disclaimer Opinion was issued. SOE consolidation concerns emerged. Asset registers were found inadequate.",
     2009: "The disclaimer era continued. The NHC housing crisis deepened with 29,000 applicants but only 226 houses built. The Road Network PPP project faced cost overruns.",
@@ -378,7 +377,7 @@ YEAR_CONTEXT = {
 }
 
 # ============================================================================
-# SPECIAL AUDITS
+# SPECIAL AUDITS - UPDATED 2005 & 2006
 # ============================================================================
 SPECIAL_AUDITS = {
     2003: {
@@ -398,15 +397,17 @@ SPECIAL_AUDITS = {
     },
     2005: {
         'audits': [
-            {'title': 'Arrears Crisis', 'summary': '$442M in arrears across Government', 'details': 'Inland Revenue ($161M), Customs ($172M), Land Tax ($105M) leading the arrears.', 'severity': 'Critical'}
+            {'title': 'Glendairy Prison Fire', 'summary': 'Inadequate insurance — $43.2M property insured for under $1M', 'details': 'The Glendairy Prison fire in March 2005 caused extensive damage. The property was insured for less than $1M despite being valued at $43.2M by the Commissioner of Land Tax. Government lost the opportunity to recover several million dollars.', 'severity': 'Critical'},
+            {'title': 'Arrears Crisis', 'summary': '$442M in arrears across Government', 'details': 'Inland Revenue ($161M), Customs ($172M), Land Tax ($105M) leading the arrears. VAT refund delays reached $45M+ with $10M in interest owed.', 'severity': 'Critical'}
         ],
-        'issues': ['Glendairy Prison fire exposed underinsurance crisis', 'VAT refund delays ($45M+ outstanding)']
+        'issues': ['Glendairy Prison fire exposed underinsurance crisis', 'VAT refund delays ($45M+ outstanding)', 'Government lost millions in insurance recovery']
     },
     2006: {
         'audits': [
-            {'title': 'Sanitation Service Authority', 'summary': 'Vehicle fleet management and workshop failures', 'details': 'Only 25 of 57 compactor vehicles operational. Workshop slow due to parts shortages.', 'severity': 'High'}
+            {'title': 'Sanitation Service Authority', 'summary': 'Vehicle fleet crisis — only 25 of 57 compactor vehicles operational', 'details': 'The SSA operated with as few as 25 of 57 compactor vehicles. Workshop delays due to parts shortages. No preventative maintenance program in place. Widespread refuse collection delays.', 'severity': 'Critical'},
+            {'title': 'St. Leonard\'s Boys\' School', 'summary': '9 years, $15M+ spent, project incomplete', 'details': 'Project started in 1996. Over $15M spent by March 2005. CDB loan funds lost due to non-compliance. Commitment fees paid. School still not completed after 9 years.', 'severity': 'High'}
         ],
-        'issues': ['$2M+ reported stolen/missing from Ministries']
+        'issues': ['$2M+ reported stolen/missing from Ministries', '$1M stolen from Psychiatric Hospital', 'SSA vehicle fleet crisis']
     },
     2007: {
         'audits': [
@@ -542,7 +543,7 @@ SPECIAL_AUDITS = {
 CHAPTER_TITLES = {
     2003: {"title": "The Foundation", "tagline": "The beginning of the clean audit era."},
     2004: {"title": "Building Momentum", "tagline": "Second consecutive clean opinion."},
-    2005: {"title": "Warning Signs", "tagline": "The arrears crisis begins to surface."},
+    2005: {"title": "Warning Signs", "tagline": "The Glendairy Prison fire exposes underinsurance."},
     2006: {"title": "First Cracks", "tagline": "Vehicle fleet crisis and missing funds."},
     2007: {"title": "The Last Clean Year", "tagline": "The final year of unqualified opinions."},
     2008: {"title": "The Turning Point", "tagline": "First Disclaimer Opinion issued."},
