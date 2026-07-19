@@ -1,28 +1,15 @@
 # ============================================================================
 # BARBADOS FINANCIAL ACCOUNTABILITY 2003-2026
 # COMPLETE YEAR-BY-YEAR EDITION WITH STORY ARC & BOOK DOWNLOAD
-# ============================================================================
-#
-# This dashboard provides a comprehensive year-by-year narrative of Barbados'
-# financial accountability journey through 24 years of Auditor General's reports.
-# Each year includes detailed context, key issues, special audits, and
-# financial metrics with historical perspective.
-#
-# VERSION: 19.1 - CREDITS IN BOOK DOWNLOAD ONLY
+# 
+# VERSION: 22.0 - ALL PROVERBS FROM "DE MORTAR-PESTLE" BY G. ADDINTON FORDE (1987)
 # DATE: July 2026
 #
-# FEATURES:
-# 1. Full story arc with 24 chapters
-# 2. Year-at-a-Glance view with drill-down
-# 3. Complete financial data (2003-2026)
-# 4. Bajan proverbs with meanings
-# 5. Special audits browser
-# 6. Repeating issues tracker
-# 7. 📥 Download complete book as HTML
-# 8. 📊 Download financial data as CSV
-# 9. Full appendices with credits (BOOK ONLY)
-# 10. Barbados-themed design
-# 11. Working navigation
+# All Bajan proverbs used in this dashboard are drawn directly from
+# "De Mortar-Pestle: A Collection of Barbadian Proverbs" by G. Addinton Forde (1987).
+# Each proverb is cited with its page number from the original publication.
+#
+# AUTHOR & COMPILER: Matthew A. A. Blackman
 # ============================================================================
 
 import streamlit as st
@@ -81,50 +68,6 @@ st.markdown("""
     margin-top: 0.2rem;
     margin-bottom: 0.3rem;
 }
-.sub-header {
-    font-size: 1.3rem;
-    color: #00267F;
-    font-weight: 600;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-    border-bottom: 3px solid #FFC726;
-    padding-bottom: 0.3rem;
-}
-.section-header {
-    font-size: 1.05rem;
-    color: #00267F;
-    font-weight: 600;
-    margin-top: 0.8rem;
-    margin-bottom: 0.3rem;
-}
-.financial-card {
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 1rem;
-    margin-bottom: 0.8rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-    border-left: 4px solid #00267F;
-}
-.metric-card {
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 0.8rem;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-    height: 100%;
-}
-.metric-value {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #00267F;
-}
-.metric-label {
-    font-size: 0.75rem;
-    color: #888;
-    margin-top: 0.1rem;
-}
 .proverb-card {
     background: linear-gradient(135deg, #00267F 0%, #1E40AF 100%);
     color: white;
@@ -143,6 +86,30 @@ st.markdown("""
     color: #BFDBFE;
     font-size: 0.85rem;
     margin-top: 4px;
+}
+.proverb-source {
+    color: #93C5FD;
+    font-size: 0.7rem;
+    margin-top: 2px;
+    opacity: 0.7;
+}
+.proverb-why {
+    color: #E0E7FF;
+    font-size: 0.8rem;
+    margin-top: 6px;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 6px;
+    border-left: 3px solid #FFC726;
+}
+.proverb-solution {
+    color: #D1FAE5;
+    font-size: 0.8rem;
+    margin-top: 6px;
+    padding: 8px 12px;
+    background: rgba(16, 185, 129, 0.15);
+    border-radius: 6px;
+    border-left: 3px solid #10B981;
 }
 .issue-critical {
     background: #FEF2F2;
@@ -193,13 +160,39 @@ st.markdown("""
 .era-disclaimer-badge { background: #FEF3C7; color: #92400E; }
 .era-adverse-badge { background: #FEE2E2; color: #991B1B; }
 .era-pending-badge { background: #EDE9FE; color: #5B21B6; }
-.download-section {
-    background: #f0f7ff;
+.metric-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 0.8rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    height: 100%;
+}
+.metric-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #00267F;
+}
+.barbados-flag-bar {
+    height: 4px;
+    background: linear-gradient(90deg, #00267F 0%, #FFC726 50%, #00267F 100%);
+    margin: 5px 0 10px 0;
+    border-radius: 2px;
+}
+.act-header {
     padding: 15px 20px;
     border-radius: 10px;
-    border: 1px solid #3B82F6;
-    margin: 10px 0;
+    margin: 15px 0 10px 0;
+    text-align: center;
 }
+.act-clean { background: #ECFDF5; border: 2px solid #10B981; }
+.act-disclaimer { background: #FFFBEB; border: 2px solid #F59E0B; }
+.act-adverse { background: #FEF2F2; border: 2px solid #DC2626; }
+.act-pending { background: #EDE9FE; border: 2px solid #8B5CF6; }
+.act-title { font-size: 1.4rem; font-weight: 700; }
+.act-subtitle { font-size: 1rem; }
+.act-count { font-size: 0.9rem; font-weight: 600; }
 .chapter-card {
     background: #ffffff;
     border: 1px solid #e0e0e0;
@@ -207,12 +200,6 @@ st.markdown("""
     padding: 15px 20px;
     margin-bottom: 12px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-.chapter-card:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transform: translateY(-2px);
 }
 .chapter-number {
     font-size: 0.8rem;
@@ -244,47 +231,66 @@ st.markdown("""
 .chapter-opinion-disclaimer { background: #FEF3C7; color: #92400E; }
 .chapter-opinion-adverse { background: #FEE2E2; color: #991B1B; }
 .chapter-opinion-pending { background: #EDE9FE; color: #5B21B6; }
-.act-header {
-    padding: 15px 20px;
+.credits-section {
+    background: #f8f5f0;
+    padding: 20px 24px;
     border-radius: 10px;
-    margin: 15px 0 10px 0;
-    text-align: center;
+    border: 2px solid #00267F;
+    margin: 20px 0;
 }
-.act-clean { background: #ECFDF5; border: 2px solid #10B981; }
-.act-disclaimer { background: #FFFBEB; border: 2px solid #F59E0B; }
-.act-adverse { background: #FEF2F2; border: 2px solid #DC2626; }
-.act-pending { background: #EDE9FE; border: 2px solid #8B5CF6; }
-.act-title { font-size: 1.4rem; font-weight: 700; }
-.act-subtitle { font-size: 1rem; }
-.act-count { font-size: 0.9rem; font-weight: 600; }
-.barbados-flag-bar {
-    height: 4px;
-    background: linear-gradient(90deg, #00267F 0%, #FFC726 50%, #00267F 100%);
-    margin: 5px 0 10px 0;
-    border-radius: 2px;
+.credits-section h4 {
+    color: #00267F;
+    margin-bottom: 8px;
 }
-.download-btn-custom {
-    background: #00267F;
+.conclusion-section {
+    background: linear-gradient(135deg, #00267F 0%, #1E40AF 100%);
     color: white;
-    padding: 12px 24px;
-    border-radius: 8px;
-    border: none;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    width: 100%;
-    transition: all 0.3s ease;
+    padding: 25px 30px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border-left: 6px solid #FFC726;
 }
-.download-btn-custom:hover {
-    background: #1E40AF;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,38,127,0.3);
+.conclusion-section h2 {
+    color: #FFC726;
+    font-size: 1.8rem;
+    margin-top: 0;
+}
+.conclusion-section .proverb-text {
+    font-size: 1.4rem;
+    font-style: italic;
+    color: #FFC726;
+    font-weight: 600;
+}
+.conclusion-section .proverb-meaning {
+    color: #BFDBFE;
+    font-size: 0.9rem;
+}
+.solution-card {
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 8px 0;
+    border-left: 3px solid #10B981;
+}
+.solution-card .proverb {
+    font-style: italic;
+    color: #FFC726;
+    font-weight: 600;
+}
+.solution-card .meaning {
+    color: #BFDBFE;
+    font-size: 0.85rem;
+}
+.solution-card .action {
+    color: #D1FAE5;
+    font-size: 0.85rem;
+    margin-top: 4px;
 }
 </style>
 """, unsafe_allow_html=True)
 
 # ============================================================================
-# COMPLETE DATASET 2003-2026
+# FINANCIAL DATA
 # ============================================================================
 FINANCIAL_DATA = {
     2003: {'revenue': 1.736, 'expenditure': 2.262, 'deficit': -0.096, 'debt': 3.976, 'opinion': 'Clean', 'debt_pct': 72.5},
@@ -314,61 +320,208 @@ FINANCIAL_DATA = {
 }
 
 # ============================================================================
-# PROVERBS - From G. Addinton Forde's "De Mortar-Pestle" (1987)
+# PROVERBS - ALL FROM "DE MORTAR-PESTLE" BY G. ADDINTON FORDE (1987)
 # ============================================================================
 PROVERBS = {
-    2003: "De cat can look at de queen.",
-    2004: "High wind know where ole house live.",
-    2005: "When fowl 'bout, cockroach should mek demsolves scarce.",
-    2006: "Every shut eye ain't sleep.",
-    2007: "Ah lil more still to go.",
-    2008: "All ah we is one people.",
-    2009: "Bad mind is worse dan bad foot.",
-    2010: "Before yuh buy, try.",
-    2011: "Calm water no mean dere ain't crocodile.",
-    2012: "Trouble don'-set up like rain.",
-    2013: "De higher de monkey climb, de more he show he tail.",
-    2014: "De longest journey starts with one step.",
-    2015: "De more de hurry, de less de speed.",
-    2016: "Every day de bucket go to well.",
-    2017: "Foolish questions need no answer.",
-    2018: "Gih Jack 'e jacket.",
-    2019: "He who feels it knows it.",
-    2020: "If yuh cyaan hear, yuh mus feel.",
-    2021: "Look before yuh leap.",
-    2022: "Mek hay while de sun shine.",
-    2023: "When de bottom drop out, e hard to patch it.",
-    2024: "Every mikkle mek a muckle.",
-    2025: "One one cocoa full basket.",
-    2026: "Tomorrow come, but not today."
+    2003: {
+        "text": "Empty bag can' stan' up, and full bag can' ben[d].",
+        "meaning": "One must have proper sustenance to function efficiently.",
+        "page": 17,
+        "why": "A strong foundation requires proper sustenance. Barbados had the basics right in 2003. The books balanced. The foundation was solid."
+    },
+    2004: {
+        "text": "Head en' mek fuh hat alone.",
+        "meaning": "One should always use one's common sense.",
+        "page": 17,
+        "why": "Good governance requires common sense, not just appearances. Accrual accounting was announced, showing Barbados was thinking ahead."
+    },
+    2005: {
+        "text": "Don' leh one drop o' tar mek yuh lose yuh whole ship and cargo.",
+        "meaning": "Do not try to save a small amount, if that saving could cause you to lose a great deal more.",
+        "page": 16,
+        "why": "The Glendairy Prison fire — saving pennies on insurance cost millions. Government lost the opportunity to recover several million dollars."
+    },
+    2006: {
+        "text": "Bucket gine up and down in well evah day, de bottom boun' to drop out.",
+        "meaning": "Continued stress and strain will inevitably result in a breakdown.",
+        "page": 15,
+        "why": "The SSA vehicle crisis — 25 of 57 compactor trucks operational. The system was under stress and would eventually break."
+    },
+    2007: {
+        "text": "Don' ship all yuh sugar in one vessel.",
+        "meaning": "Do not risk all of your resources in a single venture.",
+        "page": 16,
+        "why": "The Newton Business Park PPP failure — $18.5M lost. Don't risk everything in one venture."
+    },
+    2008: {
+        "text": "Water don' stan' pon galvanise.",
+        "meaning": "Nothing is absorbed by the individual who lacks the basic qualities to accept and make use of what is being offered.",
+        "page": 20,
+        "why": "The first Disclaimer Opinion. IPSAS adoption was incomplete. Lessons weren't being absorbed. Nothing was sticking."
+    },
+    2009: {
+        "text": "Yuh put out yuh barrel now dat de rain done fall.",
+        "meaning": "The person has waited until too late to take advantage of a situation.",
+        "page": 22,
+        "why": "29,000 applicants on housing waiting list, only 226 houses built. Too little, too late."
+    },
+    2010: {
+        "text": "De tongue dat buy yuh does sell yuh.",
+        "meaning": "The same person who flatters you, may betray you later.",
+        "page": 26,
+        "why": "The Embassy of Venezuela fraud — trusted embassy officials betrayed that trust. $52,433 misappropriated."
+    },
+    2011: {
+        "text": "Yuh can hide and buy ground, but yuh can' hide and wuck it.",
+        "meaning": "It is impossible to hide all of one's actions.",
+        "page": 34,
+        "why": "Invest Barbados spent $70M with unclear outcomes. You can't hide poor performance forever."
+    },
+    2012: {
+        "text": "Yuh don't tek down Drax Hall to fix Kendal.",
+        "meaning": "It does not make sense destroying something of value in order to make right something of equal or less value.",
+        "page": 22,
+        "why": "$700M+ procurement irregularities at BWA. 90% of contracts without public tender. Destroying public trust to fix something else."
+    },
+    2013: {
+        "text": "What' en' pass yuh en' miss yuh.",
+        "meaning": "Having escaped a particular misfortune does not mean that you are immune from it.",
+        "page": 31,
+        "why": "$157M owed to land owners. Extensive squatting on Crown lands. The problem didn't go away — it got worse."
+    },
+    2014: {
+        "text": "When goat dung want to roll, it will roll up a hill.",
+        "meaning": "When people want to make trouble, they will do so regardless of the circumstances.",
+        "page": 9,
+        "why": "$475M in VAT could not be verified. Bank reconciliations not done for years. The problems were determined to happen."
+    },
+    2015: {
+        "text": "De sea en' got nuh back door.",
+        "meaning": "The sea is not a safe place, as there is no guarantee that you will get back out.",
+        "page": 32,
+        "why": "SOE consolidation still not done (8 years). Pension liability hidden from the balance sheet. No escape from the truth."
+    },
+    2016: {
+        "text": "High wind know with ole house live.",
+        "meaning": "Advantage is taken of those known to be weak.",
+        "page": 17,
+        "why": "NHC High Rise project — $442K per unit, well above low-income range. The vulnerable — taxpayers and the poor — paid the price."
+    },
+    2017: {
+        "text": "Who help yuh buy a big guts mule don' help yuh feed it.",
+        "meaning": "He who gets you in trouble does not get you out of it.",
+        "page": 10,
+        "why": "Debt reached $13.1B. The helpers who got us into this mess had vanished. The last warning before the crisis."
+    },
+    2018: {
+        "text": "Evah pig got a Saturday.",
+        "meaning": "Everybody has his day of retribution.",
+        "page": 4,
+        "why": "After 15 years of warnings, retribution arrived. The day of reckoning came. FIRST ADVERSE OPINION. $9.15B+ in issues."
+    },
+    2019: {
+        "text": "When a bird fly too fast, 'e does fly past 'e nest.",
+        "meaning": "It is not wise to be over-ambitious.",
+        "page": 9,
+        "why": "BWA Smart Meter project — $1.49B in contracts, 90% without public tender. Over-ambition led to disaster."
+    },
+    2020: {
+        "text": "Manure don' mek ole plant grow.",
+        "meaning": "Good treatment is useless if administered too late.",
+        "page": 33,
+        "why": "$1.8B in fixed assets excluded from balance sheet. COVID-19 response came too late for some. Good treatment too late."
+    },
+    2021: {
+        "text": "Hard ears yuh won' hear, bye and bye yuh gine feel.",
+        "meaning": "Persistent disobedience will eventually result in pain.",
+        "page": 28,
+        "why": "6th consecutive Adverse Opinion. Deficit peaked at $685M. They still weren't listening. Now they feel the pain."
+    },
+    2022: {
+        "text": "Duh is more in de mortar dan de pestle.",
+        "meaning": "There is more to the issue than appears on the surface.",
+        "page": 16,
+        "why": "$2.61B tax receivables reported, but $120M in cumulative interest omitted. The hidden truth was much bigger than it appeared."
+    },
+    2023: {
+        "text": "Trouble don' set up like rain.",
+        "meaning": "Misfortune can arrive at unexpected times, so be careful.",
+        "page": 33,
+        "why": "$2.43B tax receivables could not be confirmed. $719M asset discrepancy. $115M cash overstatement. Misfortune arrived unexpectedly."
+    },
+    2024: {
+        "text": "Every bush is a man.",
+        "meaning": "Be careful how you talk, as you never know when you are being overheard.",
+        "page": 33,
+        "why": "$8M spent on IT systems at Licensing Authority — systems not operational after 4 years. Everyone knew but no one spoke."
+    },
+    2025: {
+        "text": "Wha' do in de dark does come out in de light.",
+        "meaning": "It is impossible to hide all of one's actions.",
+        "page": 34,
+        "why": "Consolidated financial statements still outstanding. Pension liability not disclosed. The truth will eventually be revealed."
+    },
+    2026: {
+        "text": "De higher de monkey climb, de more 'e show 'e tail.",
+        "meaning": "The more one shows off, the more one's faults are brought into the open.",
+        "page": 2,
+        "why": "Constitutional reform recommended for audit independence. As Barbados rises to address its challenges, its flaws become visible."
+    }
 }
 
-PROVERB_MEANINGS = {
-    2003: "Everyone has the right to see what's happening.",
-    2004: "Those who are vulnerable are most affected by change.",
-    2005: "When people in power are distracted, others should stay out of the way.",
-    2006: "Things are not always as they appear.",
-    2007: "There's still more work to be done.",
-    2008: "In times of crisis, we must stand together.",
-    2009: "Negative intentions are worse than physical limitations.",
-    2010: "Always test before committing.",
-    2011: "Appearances can be deceiving.",
-    2012: "Trouble arrives gradually, not suddenly.",
-    2013: "The higher one rises, the more visible their flaws become.",
-    2014: "Every great achievement begins with a small step.",
-    2015: "Rushing leads to mistakes.",
-    2016: "Consistent effort is required for success.",
-    2017: "Some questions are better left unasked.",
-    2018: "Give credit where it's due, but hold people accountable.",
-    2019: "Those who experience something truly understand it.",
-    2020: "If you won't listen, you'll learn through experience.",
-    2021: "Consider consequences before acting.",
-    2022: "Take advantage of good opportunities.",
-    2023: "When the foundation is broken, fixing it is extremely difficult.",
-    2024: "Small things accumulate to make a large whole.",
-    2025: "Steady progress leads to success.",
-    2026: "The future holds promise, but focus on today."
-}
+# ============================================================================
+# CONCLUSION PROVERBS - SOLUTIONS FROM "DE MORTAR-PESTLE"
+# ============================================================================
+SOLUTION_PROVERBS = [
+    {
+        "text": "Don' wait till de horse get out to shut de stable door.",
+        "meaning": "Do not wait until a situation gets out of hand before taking remedial action.",
+        "page": 3,
+        "action": "Fix the foundation NOW. Don't wait for another crisis. Address the asset registers, bank reconciliations, and SOE consolidation immediately."
+    },
+    {
+        "text": "It does tek one hand to feel a lice, but two to tek it out.",
+        "meaning": "It takes co-operation to achieve anything worthwhile.",
+        "page": 5,
+        "action": "Co-operation between the Auditor General, Parliament, and Government is essential. Accountability requires all hands working together."
+    },
+    {
+        "text": "Mek-sure better dan cock-sure.",
+        "meaning": "It is better to make absolutely sure that everything is alright, than to assume that all is well.",
+        "page": 29,
+        "action": "Verify everything. Don't assume the numbers are correct. Independent verification of tax receivables, assets, and liabilities is essential."
+    },
+    {
+        "text": "Tek time en' laziness.",
+        "meaning": "Much can be achieved by taking one's time.",
+        "page": 30,
+        "action": "Take the time to get it right. Rushing leads to mistakes. Proper implementation of systems and controls takes time but pays off."
+    },
+    {
+        "text": "Studiation beat eddication.",
+        "meaning": "Common sense is better than formal education.",
+        "page": 36,
+        "action": "Apply common sense to financial management. The solutions are not complex — they require discipline, integrity, and follow-through."
+    },
+    {
+        "text": "Gih Jack 'e jacket.",
+        "meaning": "Give every man his due credit.",
+        "page": 17,
+        "action": "Hold people accountable. Give credit where it's due, but also ensure consequences for failure. Accountability works both ways."
+    },
+    {
+        "text": "If greedy wait, hot will cool.",
+        "meaning": "Patience will be rewarded.",
+        "page": 12,
+        "action": "Be patient with the reform process. Sustainable change takes time. Don't rush, but don't delay either."
+    },
+    {
+        "text": "Home drum beat first.",
+        "meaning": "One should see after the interest of one's family before taking on somebody else's problems.",
+        "page": 17,
+        "action": "Put Barbados' financial house in order first. Fix the domestic issues before taking on international obligations."
+    }
+]
 
 # ============================================================================
 # YEAR CONTEXT
@@ -376,8 +529,8 @@ PROVERB_MEANINGS = {
 YEAR_CONTEXT = {
     2003: "The beginning of the clean audit era. Barbados' financial management was functioning well with no major issues identified. The foundation was being built for the years ahead.",
     2004: "The second consecutive clean opinion. Financial management remained strong. The announcement of accrual accounting signaled a commitment to international standards.",
-    2005: "The third clean opinion. However, warning signs emerged: the Glendairy Prison fire in March 2005 exposed severe underinsurance — the property was insured for less than $1M despite being valued at $43.2M. VAT refund delays reached $45M+ with $10M in interest owed. The arrears crisis ($442M) began to surface across Inland Revenue ($161M), Customs ($172M), and Land Tax ($105M).",
-    2006: "The fourth clean opinion. However, serious issues emerged: the Sanitation Service Authority operated with as few as 25 of 57 compactor vehicles, causing widespread collection delays. Over $2M was reported stolen or missing from ministries, including $1M from the Psychiatric Hospital. The St. Leonard's Boys' School project — 9 years underway, over $15M spent — remained incomplete and CDB loan funds were lost.",
+    2005: "The third clean opinion. However, warning signs emerged: the Glendairy Prison fire in March 2005 exposed severe underinsurance — the property was insured for less than $1M despite being valued at $43.2M.",
+    2006: "The fourth clean opinion. However, serious issues emerged: the Sanitation Service Authority operated with as few as 25 of 57 compactor vehicles. Over $2M was reported stolen or missing from ministries.",
     2007: "The fifth and final clean opinion. This was the last year of unqualified audit opinions. The Newton Business Park PPP failure ($18.5M loss) foreshadowed challenges ahead.",
     2008: "The turning point. IPSAS adoption was incomplete, and the first Disclaimer Opinion was issued. SOE consolidation concerns emerged. Asset registers were found inadequate.",
     2009: "The disclaimer era continued. The NHC housing crisis deepened with 29,000 applicants but only 226 houses built. The Road Network PPP project faced cost overruns.",
@@ -391,10 +544,10 @@ YEAR_CONTEXT = {
     2017: "The last pre-Adverse year. Debt reached $13.1B. The stage was set for the crisis that would follow.",
     2018: "THE BREAKING POINT. First Adverse Opinion issued. $9.15B+ in issues. SOE consolidation not done (15 years). Pension liabilities hidden (15 years).",
     2019: "Adverse Opinion continued. Cash overstatements identified ($115M). The BWA Smart Meter project showed $1.49B in contracts with 90% without public tender.",
-    2020: "COVID-19 impacted audits. $1.8B in fixed assets excluded from balance sheet. $1.7B in land valuations unverified. Poverty Eradication Fund showed $24M disbursed without criteria.",
+    2020: "COVID-19 impacted audits. $1.8B in fixed assets excluded from balance sheet. $1.7B in land valuations unverified.",
     2021: "Deficit peaked at $685M. 6th consecutive Adverse Opinion. The PRDS performance review system was still not fully implemented after 20 years.",
-    2022: "Adverse Opinion continues. Tax receivables of $2.61B reported, but $120M in cumulative interest omitted. Income and Corporation taxes prior to 2013 excluded. Pension liabilities not included. SOE consolidation still not done.",
-    2023: "THE CRISIS DEEPENS. $2.43B tax receivables could not be confirmed due to insufficient supporting documentation. $719M asset discrepancy between financial statements and subsidiary records. $115M cash overstatement. 6th consecutive Adverse Opinion.",
+    2022: "Adverse Opinion continues. Tax receivables of $2.61B reported, but $120M in cumulative interest omitted. Pension liabilities not included.",
+    2023: "THE CRISIS DEEPENS. $2.43B tax receivables could not be confirmed. $719M asset discrepancy. $115M cash overstatement. 6th consecutive Adverse Opinion.",
     2024: "IT audit reveals system failures at Licensing Authority ($8M spent, systems not operational after 4 years). Budget overruns on technology projects.",
     2025: "Consolidated financial statements still outstanding. Pension liability not disclosed. HOPE Inc's PV model still not operational after 4 years.",
     2026: "Constitutional reform recommendation for audit independence. SOE consolidation and asset verification remain priority focus areas."
@@ -406,83 +559,81 @@ YEAR_CONTEXT = {
 SPECIAL_AUDITS = {
     2003: {
         'audits': [
-            {'title': "St. Leonard's School Refurbishment", 'summary': 'CDB loan funds lost due to non-compliance', 'details': 'Government disqualified from CDB loan disbursements due to failure to meet criteria. Commitment fees paid for loans that could not be accessed.', 'severity': 'High'},
-            {'title': 'Magistrates Courts Cash Management', 'summary': 'Cash shortages and unauthorized write-offs', 'details': 'Multiple courts had cash shortages. Officers were aware of shortages for years but took no action.', 'severity': 'Medium'},
-            {'title': 'Barbados Licensing Authority Review', 'summary': 'Weak controls in driving licence issuance', 'details': 'Inadequate record keeping, unreliable electronic data, and weak internal controls.', 'severity': 'Medium'}
+            {'title': "St. Leonard's School Refurbishment", 'summary': 'CDB loan funds lost due to non-compliance', 'severity': 'High'},
+            {'title': 'Magistrates Courts Cash Management', 'summary': 'Cash shortages and unauthorized write-offs', 'severity': 'Medium'}
         ],
-        'issues': ['First major special audits conducted', 'New Public Accounts Committee Act passed', 'First Audit Office reorganization']
+        'issues': ['First major special audits conducted', 'New Public Accounts Committee Act passed']
     },
     2004: {
         'audits': [
-            {'title': 'Barbados Tourism Authority', 'summary': '$10M+ deficits, "Best of Barbados" cost overruns', 'details': 'Persistent deficits, unbudgeted expenditures, weak budgetary control.', 'severity': 'High'},
-            {'title': 'Urban Development Commission', 'summary': 'Loan programme failures and poor governance', 'details': '82% of housing loans in arrears, unauthorized loans, weak internal controls.', 'severity': 'High'}
+            {'title': 'Barbados Tourism Authority', 'summary': '$10M+ deficits, "Best of Barbados" cost overruns', 'severity': 'High'},
+            {'title': 'Urban Development Commission', 'summary': 'Loan programme failures and poor governance', 'severity': 'High'}
         ],
         'issues': ['Special audits of BTA and UDC', 'Accrual accounting announced']
     },
     2005: {
         'audits': [
-            {'title': 'Glendairy Prison Fire', 'summary': 'Inadequate insurance — $43.2M property insured for under $1M', 'details': 'The Glendairy Prison fire in March 2005 caused extensive damage. The property was insured for less than $1M despite being valued at $43.2M by the Commissioner of Land Tax. Government lost the opportunity to recover several million dollars.', 'severity': 'Critical'},
-            {'title': 'Arrears Crisis', 'summary': '$442M in arrears across Government', 'details': 'Inland Revenue ($161M), Customs ($172M), Land Tax ($105M) leading the arrears. VAT refund delays reached $45M+ with $10M in interest owed.', 'severity': 'Critical'}
+            {'title': 'Glendairy Prison Fire', 'summary': '$43.2M property insured for under $1M', 'severity': 'Critical'},
+            {'title': 'Arrears Crisis', 'summary': '$442M in arrears across Government', 'severity': 'Critical'}
         ],
-        'issues': ['Glendairy Prison fire exposed underinsurance crisis', 'VAT refund delays ($45M+ outstanding)', 'Government lost millions in insurance recovery']
+        'issues': ['Glendairy Prison fire exposed underinsurance crisis', 'VAT refund delays ($45M+ outstanding)']
     },
     2006: {
         'audits': [
-            {'title': 'Sanitation Service Authority', 'summary': 'Vehicle fleet crisis — only 25 of 57 compactor vehicles operational', 'details': 'The SSA operated with as few as 25 of 57 compactor vehicles. Workshop delays due to parts shortages. No preventative maintenance program in place. Widespread refuse collection delays.', 'severity': 'Critical'},
-            {'title': 'St. Leonard\'s Boys\' School', 'summary': '9 years, $15M+ spent, project incomplete', 'details': 'Project started in 1996. Over $15M spent by March 2005. CDB loan funds lost due to non-compliance. Commitment fees paid. School still not completed after 9 years.', 'severity': 'High'}
+            {'title': 'Sanitation Service Authority', 'summary': 'Only 25 of 57 compactor vehicles operational', 'severity': 'Critical'},
+            {'title': 'St. Leonard\'s Boys\' School', 'summary': '9 years, $15M+ spent, project incomplete', 'severity': 'High'}
         ],
-        'issues': ['$2M+ reported stolen/missing from Ministries', '$1M stolen from Psychiatric Hospital', 'SSA vehicle fleet crisis']
+        'issues': ['$2M+ reported stolen from Ministries', '$1M stolen from Psychiatric Hospital']
     },
     2007: {
         'audits': [
-            {'title': 'Newton Business Park PPP', 'summary': 'PPP failure, contractor terminated, $18.5M lost', 'details': 'Design-build contract terminated in March 2007. Full contract sum disbursed but project uncompleted.', 'severity': 'Critical'}
+            {'title': 'Newton Business Park PPP', 'summary': 'PPP failure, $18.5M lost', 'severity': 'Critical'}
         ],
         'issues': ['PPP projects under scrutiny', 'Newton Business Park failure']
     },
     2008: {
         'audits': [
-            {'title': 'First Disclaimer Opinion', 'summary': 'IPSAS adoption but incomplete implementation', 'details': 'First time Audit Office could not express an opinion on financial statements. Asset registers inadequate.', 'severity': 'Critical'}
+            {'title': 'First Disclaimer Opinion', 'summary': 'IPSAS adoption incomplete, asset registers inadequate', 'severity': 'Critical'}
         ],
         'issues': ['First Disclaimer Opinion issued', 'Accrual accounting transition challenges']
     },
     2009: {
         'audits': [
-            {'title': 'National Housing Corporation', 'summary': 'Housing demand vs delivery gap', 'details': '29,000 applicants on waiting list. Only 226 houses built against target of 1,600.', 'severity': 'High'},
-            {'title': 'Barbados Road Network Project', 'summary': 'PPP cost overruns and disputes', 'details': 'Project cost exceeded $117M, contractor disputes, incomplete designs.', 'severity': 'High'}
+            {'title': 'National Housing Corporation', 'summary': '29,000 applicants, only 226 houses built', 'severity': 'High'},
+            {'title': 'Barbados Road Network Project', 'summary': 'PPP cost overruns and disputes', 'severity': 'High'}
         ],
         'issues': ['NHC housing crisis', 'Road network PPP challenges']
     },
     2010: {
         'audits': [
-            {'title': 'Embassy of Venezuela', 'summary': 'Misappropriation of funds by embassy official', 'details': 'US$52,433 transferred to personal accounts under guise of official travel. Officer removed from post.', 'severity': 'Critical'},
-            {'title': 'Barbados Coalition of Service Industries', 'summary': 'Governance and performance measurement failures', 'details': '$4.1M in grants over 5 years with minimal returns. Trade missions yielded little business.', 'severity': 'High'}
+            {'title': 'Embassy of Venezuela', 'summary': '$52,433 misappropriated by embassy official', 'severity': 'Critical'},
+            {'title': 'Barbados Coalition of Service Industries', 'summary': '$4.1M in grants with minimal returns', 'severity': 'High'}
         ],
         'issues': ['Embassy fraud exposed', 'BCSI value-for-money concerns']
     },
     2011: {
         'audits': [
-            {'title': 'Invest Barbados Performance Review', 'summary': '$70M spent, outcomes unclear', 'details': 'Performance measures not linked to outcomes. Sales representatives paid without results.', 'severity': 'High'},
-            {'title': 'Barbados Vocational Training Board', 'summary': 'Apprenticeship programme failures', 'details': 'Poor monitoring of apprentices, certification issues, project management failures.', 'severity': 'Medium'}
+            {'title': 'Invest Barbados Performance Review', 'summary': '$70M spent, outcomes unclear', 'severity': 'High'}
         ],
         'issues': ['Performance audit era begins', 'Focus on value-for-money']
     },
     2012: {
         'audits': [
-            {'title': 'Barbados Water Authority (Special)', 'summary': '$700M+ procurement irregularities', 'details': 'No public tendering for 90% of contracts. Smart meter project issues. $2.75M payment for services not provided.', 'severity': 'Critical'}
+            {'title': 'Barbados Water Authority', 'summary': '$700M+ procurement irregularities, 90% without tender', 'severity': 'Critical'}
         ],
         'issues': ['Special audit on BWA', 'Procurement transparency concerns']
     },
     2013: {
         'audits': [
-            {'title': 'Land Acquisition Process', 'summary': '$157M outstanding compensation to land owners', 'details': 'Government owes estimated $157M to land owners. Land used without proper acquisition.', 'severity': 'Critical'},
-            {'title': 'Illegal Occupation of Crown Lands', 'summary': 'Extensive squatting across Barbados', 'details': 'Hundreds of illegal structures on Crown lands. Zone 1 water supply at risk.', 'severity': 'High'}
+            {'title': 'Land Acquisition Process', 'summary': '$157M outstanding compensation to land owners', 'severity': 'Critical'},
+            {'title': 'Illegal Occupation of Crown Lands', 'summary': 'Extensive squatting across Barbados', 'severity': 'High'}
         ],
         'issues': ['Land acquisition crisis', 'Squatting on Crown lands']
     },
     2014: {
         'audits': [
-            {'title': 'VAT Division Review', 'summary': '$475M in unverified receivables', 'details': 'VAT receivables of $475M could not be verified. Refunds delayed, interest accruing.', 'severity': 'Critical'},
-            {'title': 'Inland Revenue Department', 'summary': 'Receivables unverified for years', 'details': 'IRD receivables of $244M could not be verified. Bank reconciliations not done for years.', 'severity': 'Critical'}
+            {'title': 'VAT Division Review', 'summary': '$475M in unverified receivables', 'severity': 'Critical'},
+            {'title': 'Inland Revenue Department', 'summary': 'Receivables unverified for years', 'severity': 'Critical'}
         ],
         'issues': ['Tax receivables crisis deepens', 'Bank reconciliation failures']
     },
@@ -492,7 +643,7 @@ SPECIAL_AUDITS = {
     },
     2016: {
         'audits': [
-            {'title': 'NHC High Rise Apartments', 'summary': 'Cost overruns, procurement failures', 'details': 'Construction cost $442K per unit, well above low-income range. Poor contractor performance.', 'severity': 'High'}
+            {'title': 'NHC High Rise Apartments', 'summary': '$442K per unit, well above low-income range', 'severity': 'High'}
         ],
         'issues': ['First Adverse Opinion (2018 approaching)', 'Financial crisis building']
     },
@@ -502,67 +653,65 @@ SPECIAL_AUDITS = {
     },
     2018: {
         'audits': [
-            {'title': 'School Meals Centre', 'summary': '$23.12M spent, project incomplete after 6 years', 'details': 'Original $19.9M contract, $23.12M spent by 2018, project still incomplete. Contractor disputes.', 'severity': 'High'},
-            {'title': 'Transport Board', 'summary': 'Bus availability declined from 163 to 50 buses', 'details': 'Average monthly bus availability from 163 (2015) to 50 (2019). Fleet in crisis.', 'severity': 'Critical'},
-            {'title': 'Clearwater Bay', 'summary': '$124M loan guarantee written off', 'details': '$124M advanced to Clearwater Bay for Four Seasons project. Written off in 2018.', 'severity': 'Critical'}
+            {'title': 'School Meals Centre', 'summary': '$23.12M spent, project incomplete after 6 years', 'severity': 'High'},
+            {'title': 'Transport Board', 'summary': 'Bus availability declined from 163 to 50 buses', 'severity': 'Critical'},
+            {'title': 'Clearwater Bay', 'summary': '$124M loan guarantee written off', 'severity': 'Critical'}
         ],
-        'issues': ['🔴 FIRST ADVERSE OPINION - 2003 to 2018', 'SOE consolidation not done (15 years)', 'Pension liabilities hidden (15 years)']
+        'issues': ['🔴 FIRST ADVERSE OPINION', 'SOE consolidation not done (15 years)']
     },
     2019: {
         'audits': [
-            {'title': 'BWA Smart Meter Project', 'summary': '$1.49B in contracts, 90% without public tender', 'details': 'Smart meter project issues, $5.5M payment for unexplained services.', 'severity': 'Critical'}
+            {'title': 'BWA Smart Meter Project', 'summary': '$1.49B in contracts, 90% without public tender', 'severity': 'Critical'}
         ],
         'issues': ['Adverse Opinion continues', 'Cash overstatements identified']
     },
     2020: {
         'audits': [
-            {'title': 'Poverty Eradication Fund', 'summary': '$24M disbursed without proper criteria', 'details': 'Fund established 20+ years ago with no clear objectives. Assistance provided without criteria.', 'severity': 'High'},
-            {'title': 'Employment Recruitment Programs', 'summary': '$5.17M spent, limited results', 'details': 'No workers placed in USA for 6 years. Declining numbers in Canada.', 'severity': 'Medium'}
+            {'title': 'Poverty Eradication Fund', 'summary': '$24M disbursed without proper criteria', 'severity': 'High'}
         ],
         'issues': ['COVID-19 impact on audits', '$1.8B fixed assets excluded from balance sheet']
     },
     2021: {
         'audits': [
-            {'title': 'PRDS Special Audit', 'summary': 'Performance Review system partially implemented', 'details': 'PRDS introduced 2001, still not fully implemented. 45% of Ministries not fully using system.', 'severity': 'Medium'}
+            {'title': 'PRDS Special Audit', 'summary': 'Performance Review system still not fully implemented after 20 years', 'severity': 'Medium'}
         ],
         'issues': ['6th consecutive Adverse Opinion', 'Deficit peaks ($685M)']
     },
     2022: {
         'audits': [
-            {'title': 'Tax Receivables Review', 'summary': '$2.61B tax receivables, $120M interest omitted', 'details': 'Tax receivables of $2.61B did not include $120M in cumulative interest. Income and Corporation taxes prior to 2013 excluded. Bank reconciliations not done for 15+ years.', 'severity': 'Critical'},
-            {'title': 'Other Capital Assets', 'summary': '$2.19B in assets, road infrastructure excluded', 'details': 'Other Capital Assets of $2.19B did not include Road Infrastructure and Heritage assets. Asset valuations incomplete.', 'severity': 'High'}
+            {'title': 'Tax Receivables Review', 'summary': '$2.61B tax receivables, $120M interest omitted', 'severity': 'Critical'}
         ],
-        'issues': ['Adverse Opinion continues', 'Tax receivables $2.61B unverified', 'Pension liabilities not included', 'SOE consolidation not done']
+        'issues': ['Adverse Opinion continues', '$2.61B tax receivables unverified']
     },
     2023: {
         'audits': [
-            {'title': 'Tax Receivables Unconfirmed', 'summary': '$2.43B tax receivables could not be confirmed', 'details': 'Tax Receivables of $2.43B could not be confirmed due to absence of sufficient supporting documentation. Bad Debt Expense of $68.28M also unconfirmed.', 'severity': 'Critical'},
-            {'title': 'Asset Discrepancy', 'summary': '$719M difference in Other Capital Assets', 'details': 'Other Capital Assets showed $719M difference between financial statements and subsidiary records. Cash and Financial Investments overstated by $115M and $147M respectively.', 'severity': 'Critical'}
+            {'title': 'Tax Receivables Unconfirmed', 'summary': '$2.43B tax receivables could not be confirmed', 'severity': 'Critical'},
+            {'title': 'Asset Discrepancy', 'summary': '$719M difference in Other Capital Assets', 'severity': 'Critical'}
         ],
-        'issues': ['🔴 CRISIS DEEPENS', '$2.43B tax receivables unconfirmed', '$719M asset discrepancy', '6th consecutive Adverse Opinion']
+        'issues': ['🔴 CRISIS DEEPENS', '6th consecutive Adverse Opinion']
     },
     2024: {
         'audits': [
-            {'title': 'Barbados Licensing Authority IT Systems', 'summary': '$8M spent, systems not fully operational after 4 years', 'details': 'EVR and VRS systems at various stages of development. None fully deployed by March 2024.', 'severity': 'High'}
+            {'title': 'Barbados Licensing Authority IT Systems', 'summary': '$8M spent, systems not fully operational after 4 years', 'severity': 'High'}
         ],
-        'issues': ['IT audit reveals system failures', 'Budget overruns on technology projects']
+        'issues': ['IT audit reveals system failures']
     },
     2025: {
         'audits': [
-            {'title': 'HOPE Inc Update', 'summary': '110 houses completed, PV model still not operational', 'details': 'Four years after inception, photovoltaic revenue model not yet generating income.', 'severity': 'Medium'}
+            {'title': 'HOPE Inc Update', 'summary': '110 houses completed, PV model still not operational', 'severity': 'Medium'}
         ],
-        'issues': ['Consolidated financial statements still outstanding', 'Pension liability not disclosed']
+        'issues': ['Consolidated financial statements still outstanding']
     },
     2026: {
         'audits': [
-            {'title': 'Projected Focus Areas', 'summary': 'Continued focus on SOE consolidation and asset verification', 'details': 'Audit Office seeks constitutional reform for independence.', 'severity': 'Medium'}
+            {'title': 'Projected Focus Areas', 'summary': 'Continued focus on SOE consolidation and asset verification', 'severity': 'Medium'}
         ],
         'issues': ['Constitutional reform recommendation', 'Need for audit independence']
     }
 }
 
 # ============================================================================
-# CHAPTER TITLES - THE STORY ARC
+# CHAPTER TITLES
 # ============================================================================
 CHAPTER_TITLES = {
     2003: {"title": "The Foundation", "tagline": "The beginning of the clean audit era."},
@@ -584,8 +733,8 @@ CHAPTER_TITLES = {
     2019: {"title": "The Smart Meter Scandal", "tagline": "$1.49B in contracts, 90% without tender."},
     2020: {"title": "COVID & Missing Assets", "tagline": "$1.8B fixed assets excluded."},
     2021: {"title": "The Peak of Deficit", "tagline": "Deficit peaks at $685M."},
-    2022: {"title": "The $2.61B Question", "tagline": "Tax receivables unverified. $120M interest omitted."},
-    2023: {"title": "THE CRISIS DEEPENS", "tagline": "$2.43B tax receivables unconfirmed. 6th Adverse Opinion."},
+    2022: {"title": "The $2.61B Question", "tagline": "Tax receivables unverified."},
+    2023: {"title": "THE CRISIS DEEPENS", "tagline": "$2.43B tax receivables unconfirmed."},
     2024: {"title": "Technology Failures", "tagline": "$8M spent, systems not operational."},
     2025: {"title": "Still Waiting", "tagline": "Consolidated statements still outstanding."},
     2026: {"title": "Constitutional Reform", "tagline": "The path forward for audit independence."}
@@ -660,7 +809,6 @@ def get_chapter_opinion_class(opinion):
         return ''
 
 def get_dataframe():
-    """Convert FINANCIAL_DATA to pandas DataFrame for export."""
     rows = []
     for year, data in FINANCIAL_DATA.items():
         rows.append({
@@ -677,51 +825,51 @@ def get_dataframe():
 def get_revenue_breakdown(year):
     if year <= 2007:
         return {
-            'Income Tax (PAYE & Corp)': 0.33,
-            'VAT & Excise Taxes': 0.30,
-            'Customs & Import Duties': 0.14,
-            'Property & Land Taxes': 0.08,
-            'Other Taxes & Levies': 0.06,
+            'Income Tax': 0.33,
+            'VAT & Excise': 0.30,
+            'Customs & Import': 0.14,
+            'Property & Land': 0.08,
+            'Other Taxes': 0.06,
             'Non-Tax Revenue': 0.06,
             'Grants & Aid': 0.03
         }
     elif year <= 2012:
         return {
-            'Income Tax (PAYE & Corp)': 0.29,
-            'VAT & Excise Taxes': 0.33,
-            'Customs & Import Duties': 0.13,
-            'Property & Land Taxes': 0.07,
-            'Other Taxes & Levies': 0.07,
+            'Income Tax': 0.29,
+            'VAT & Excise': 0.33,
+            'Customs & Import': 0.13,
+            'Property & Land': 0.07,
+            'Other Taxes': 0.07,
             'Non-Tax Revenue': 0.07,
             'Grants & Aid': 0.04
         }
     elif year <= 2017:
         return {
-            'Income Tax (PAYE & Corp)': 0.26,
-            'VAT & Excise Taxes': 0.35,
-            'Customs & Import Duties': 0.12,
-            'Property & Land Taxes': 0.07,
-            'Other Taxes & Levies': 0.08,
+            'Income Tax': 0.26,
+            'VAT & Excise': 0.35,
+            'Customs & Import': 0.12,
+            'Property & Land': 0.07,
+            'Other Taxes': 0.08,
             'Non-Tax Revenue': 0.08,
             'Grants & Aid': 0.04
         }
     elif year <= 2020:
         return {
-            'Income Tax (PAYE & Corp)': 0.24,
-            'VAT & Excise Taxes': 0.32,
-            'Customs & Import Duties': 0.10,
-            'Property & Land Taxes': 0.07,
-            'Other Taxes & Levies': 0.09,
+            'Income Tax': 0.24,
+            'VAT & Excise': 0.32,
+            'Customs & Import': 0.10,
+            'Property & Land': 0.07,
+            'Other Taxes': 0.09,
             'Non-Tax Revenue': 0.10,
             'Grants & Aid': 0.08
         }
     else:
         return {
-            'Income Tax (PAYE & Corp)': 0.27,
-            'VAT & Excise Taxes': 0.34,
-            'Customs & Import Duties': 0.12,
-            'Property & Land Taxes': 0.07,
-            'Other Taxes & Levies': 0.08,
+            'Income Tax': 0.27,
+            'VAT & Excise': 0.34,
+            'Customs & Import': 0.12,
+            'Property & Land': 0.07,
+            'Other Taxes': 0.08,
             'Non-Tax Revenue': 0.08,
             'Grants & Aid': 0.04
         }
@@ -735,7 +883,7 @@ def get_expenditure_breakdown(year):
             'Grants & Transfers': 0.14,
             'Capital Expenditure': 0.10,
             'Social Programs': 0.05,
-            'Other Operating Costs': 0.03
+            'Other': 0.03
         }
     elif year <= 2012:
         return {
@@ -745,7 +893,7 @@ def get_expenditure_breakdown(year):
             'Grants & Transfers': 0.15,
             'Capital Expenditure': 0.08,
             'Social Programs': 0.07,
-            'Other Operating Costs': 0.03
+            'Other': 0.03
         }
     elif year <= 2017:
         return {
@@ -755,7 +903,7 @@ def get_expenditure_breakdown(year):
             'Grants & Transfers': 0.16,
             'Capital Expenditure': 0.06,
             'Social Programs': 0.08,
-            'Other Operating Costs': 0.03
+            'Other': 0.03
         }
     elif year <= 2020:
         return {
@@ -765,7 +913,7 @@ def get_expenditure_breakdown(year):
             'Grants & Transfers': 0.17,
             'Capital Expenditure': 0.05,
             'Social Programs': 0.09,
-            'Other Operating Costs': 0.03
+            'Other': 0.03
         }
     else:
         return {
@@ -775,16 +923,15 @@ def get_expenditure_breakdown(year):
             'Grants & Transfers': 0.16,
             'Capital Expenditure': 0.06,
             'Social Programs': 0.08,
-            'Other Operating Costs': 0.03
+            'Other': 0.03
         }
 
 # ============================================================================
-# BOOK GENERATOR FUNCTION - WITH CREDITS ONLY IN BOOK
+# BOOK GENERATOR FUNCTION
 # ============================================================================
 def generate_book_html():
     """Generate the complete book as an HTML string for download."""
     
-    # Build the book content
     book_content = []
     
     # Cover
@@ -798,6 +945,9 @@ def generate_book_html():
         <div class="years">2003 — 2026</div>
         <div style="margin-top:20px; font-size:0.9rem; color:#888;">
             Based on 24 Years of Auditor General's Reports
+        </div>
+        <div style="margin-top:8px; font-size:0.8rem; color:#aaa; font-style:italic;">
+            Proverbs from "De Mortar-Pestle" by G. Addinton Forde (1987)
         </div>
     </div>
     ''')
@@ -828,225 +978,110 @@ def generate_book_html():
         <p style="margin-top:6px;">
             This book is an attempt to answer that question.
         </p>
-    </div>
-    ''')
-    
-    # Introduction
-    book_content.append('''
-    <div style="margin:30px 0 40px;">
-        <h2 style="color:#00267F; font-size:2rem; border-bottom:2px solid #FFC726; padding-bottom:6px;">Introduction</h2>
-        <h3 style="color:#1a1a2e; font-size:1.4rem; margin-top:12px;">The Story of Barbados' Financial Accountability</h3>
-        <p style="margin-top:10px;">
-            In 2003, Barbados received a clean audit opinion.
+        <p style="margin-top:10px; font-style:italic; color:#555; font-size:0.9rem;">
+            Each chapter opens with a Bajan proverb from <strong>"De Mortar-Pestle"</strong> by G. Addinton Forde (1987),
+            a collection of Barbadian proverbs that captures the wisdom of the island's elders.
         </p>
-        <p>
-            The country's finances were in order. The books balanced. The Auditor General had no major issues to report.
-        </p>
-        <p>
-            By 2023, that had changed dramatically.
-        </p>
-        <table style="width:100%; border-collapse:collapse; margin:16px 0;">
-            <thead><tr style="background:#00267F; color:white;"><th>Period</th><th>Opinion</th><th>Meaning</th></tr></thead>
-            <tbody>
-                <tr><td>2003-2007</td><td><span class="opinion-badge opinion-clean">✅ Clean</span></td><td>Everything was in order</td></tr>
-                <tr><td>2008-2017</td><td><span class="opinion-badge opinion-disclaimer">⚠️ Disclaimer</span></td><td>The numbers couldn't be verified</td></tr>
-                <tr><td>2018-2023</td><td><span class="opinion-badge opinion-adverse">❌ Adverse</span></td><td>The numbers were materially wrong</td></tr>
-            </tbody>
-        </table>
-        <div style="margin-top:16px;">
-            <p><strong>How did we go from clean opinions to adverse opinions?</strong></p>
-            <p><strong>How did debt grow from $3.98B to $13.99B?</strong></p>
-            <p><strong>How did the same issues persist for 20 years without being fixed?</strong></p>
-        </div>
-        <p style="margin-top:10px; font-style:italic; color:#555;">This book traces the journey.</p>
     </div>
     ''')
     
     # Generate chapters
-    eras = [
-        (2003, 2008, "PART I", "The Road to Clean Opinions", "2003 — 2007"),
-        (2008, 2018, "PART II", "The Slow Decline", "2008 — 2017"),
-        (2018, 2024, "PART III", "The Breaking Point", "2018 — 2023")
-    ]
-    
-    for start, end, part, title, years in eras:
-        book_content.append(f'<div class="part"><h2>{part}</h2><div class="sub">{title}</div><div style="font-size:1.2rem; margin-top:4px;">{years}</div></div>')
+    for year in range(2003, 2027):
+        data = FINANCIAL_DATA[year]
+        proverb = PROVERBS.get(year, {"text": "", "meaning": "", "page": 0, "why": ""})
+        chapter = CHAPTER_TITLES.get(year, {"title": f"Year {year}", "tagline": ""})
+        context = YEAR_CONTEXT.get(year, "")
+        special = SPECIAL_AUDITS.get(year, {'audits': [], 'issues': []})
         
-        for year in range(start, end):
-            data = FINANCIAL_DATA[year]
-            proverb = PROVERBS.get(year, "")
-            meaning = PROVERB_MEANINGS.get(year, "")
-            chapter = CHAPTER_TITLES.get(year, {"title": f"Year {year}", "tagline": ""})
-            context = YEAR_CONTEXT.get(year, "")
-            special = SPECIAL_AUDITS.get(year, {'audits': [], 'issues': []})
-            
-            opinion_color = "opinion-clean" if data['opinion'] == 'Clean' else "opinion-disclaimer" if data['opinion'] == 'Disclaimer' else "opinion-adverse"
-            opinion_emoji = "✅" if data['opinion'] == 'Clean' else "⚠️" if data['opinion'] == 'Disclaimer' else "❌"
-            deficit_class = "positive" if data['deficit'] >= 0 else "negative"
-            deficit_sign = "+" if data['deficit'] >= 0 else ""
-            
-            book_content.append(f'''
-            <div class="chapter">
-                <div class="number">Chapter {year - 2002}</div>
-                <h3>{chapter['title']}</h3>
-                <div style="font-size:0.95rem; color:#666; margin-bottom:4px;">{year}</div>
-                <div class="proverb">"{proverb}"</div>
-                <div class="proverb-meaning">{meaning}</div>
-                <div class="metric-grid">
-                    <div class="metric-item"><div class="label">Revenue</div><div class="value">${data['revenue']:.3f}B</div></div>
-                    <div class="metric-item"><div class="label">Expenditure</div><div class="value">${data['expenditure']:.3f}B</div></div>
-                    <div class="metric-item"><div class="label">{"Surplus" if data['deficit'] >= 0 else "Deficit"}</div><div class="value {deficit_class}">{deficit_sign}{data['deficit']:.3f}B</div></div>
-                    <div class="metric-item"><div class="label">Debt</div><div class="value">${data['debt']:.3f}B</div></div>
-                    <div class="metric-item"><div class="label">Opinion</div><div><span class="opinion-badge {opinion_color}">{opinion_emoji} {data['opinion']}</span></div></div>
-                </div>
-                <p>{context}</p>
+        opinion_color = "opinion-clean" if data['opinion'] == 'Clean' else "opinion-disclaimer" if data['opinion'] == 'Disclaimer' else "opinion-adverse"
+        opinion_emoji = "✅" if data['opinion'] == 'Clean' else "⚠️" if data['opinion'] == 'Disclaimer' else "❌"
+        
+        book_content.append(f'''
+        <div class="chapter">
+            <div class="number">Chapter {year - 2002}</div>
+            <h3>{chapter['title']}</h3>
+            <div style="font-size:0.95rem; color:#666; margin-bottom:4px;">{year}</div>
+            <div class="proverb">"{proverb['text']}"</div>
+            <div class="proverb-meaning">{proverb['meaning']}</div>
+            <div style="font-size:0.7rem; color:#888; margin-bottom:8px;">Source: De Mortar-Pestle, p. {proverb['page']}</div>
+            <div style="font-size:0.85rem; color:#555; font-style:italic; margin-bottom:12px; background:#f8f5f0; padding:8px 12px; border-radius:6px; border-left:3px solid #FFC726;">
+                <strong>Why this proverb fits {year}:</strong> {proverb['why']}
             </div>
-            ''')
-            
-            if special.get('audits'):
-                book_content.append('<div style="margin:8px 0;">')
-                for audit in special['audits']:
-                    severity_class = "issue-critical" if audit.get('severity') == 'Critical' else "issue-warning" if audit.get('severity') == 'High' else "issue-info"
-                    icon = '🔴' if audit.get('severity') == 'Critical' else '🟠' if audit.get('severity') == 'High' else 'ℹ️'
-                    book_content.append(f'''
-                    <div class="{severity_class}">
-                        <strong>{icon} {audit['title']}</strong><br>
-                        {audit['summary']}
-                    </div>
-                    ''')
-                book_content.append('</div>')
+            <div class="metric-grid">
+                <div class="metric-item"><div class="label">Revenue</div><div class="value">${data['revenue']:.3f}B</div></div>
+                <div class="metric-item"><div class="label">Expenditure</div><div class="value">${data['expenditure']:.3f}B</div></div>
+                <div class="metric-item"><div class="label">Deficit</div><div class="value" style="color:{'#10B981' if data['deficit'] >= 0 else '#DC2626'};">{data['deficit']:.3f}B</div></div>
+                <div class="metric-item"><div class="label">Debt</div><div class="value">${data['debt']:.3f}B</div></div>
+                <div class="metric-item"><div class="label">Opinion</div><div><span class="opinion-badge {opinion_color}">{opinion_emoji} {data['opinion']}</span></div></div>
+            </div>
+            <p>{context}</p>
+        </div>
+        ''')
+        
+        if special.get('audits'):
+            book_content.append('<div style="margin:8px 0;">')
+            for audit in special['audits']:
+                severity_class = "issue-critical" if audit.get('severity') == 'Critical' else "issue-warning" if audit.get('severity') == 'High' else "issue-info"
+                icon = '🔴' if audit.get('severity') == 'Critical' else '🟠' if audit.get('severity') == 'High' else 'ℹ️'
+                book_content.append(f'''
+                <div class="{severity_class}">
+                    <strong>{icon} {audit['title']}</strong><br>
+                    {audit['summary']}
+                </div>
+                ''')
+            book_content.append('</div>')
     
-    # Era summaries
-    book_content.append('''
-    <div class="summary-box">
-        <h4>The Pattern — From Clean to Adverse</h4>
-        <table style="width:100%; color:white; border-collapse:collapse;">
-            <thead><tr style="border-bottom:1px solid rgba(255,255,255,0.2);"><th>Metric</th><th>Clean Era (2003-07)</th><th>Disclaimer Era (2008-17)</th><th>Adverse Era (2018-23)</th></tr></thead>
-            <tbody>
-                <tr><td>Average Revenue</td><td>$1.97B</td><td>$2.55B</td><td>$3.04B</td></tr>
-                <tr><td>Average Deficit</td><td>-$0.04B</td><td>-$0.57B</td><td>-$0.45B</td></tr>
-                <tr><td>Average Debt</td><td>$4.48B</td><td>$9.37B</td><td>$13.36B</td></tr>
-                <tr><td>Average Debt/GDP</td><td>74.3%</td><td>99.8%</td><td>127.7%</td></tr>
-            </tbody>
-        </table>
-        <p style="margin-top:12px; color:#BFDBFE; font-style:italic;">Revenue grew. But debt grew faster. Deficits grew. But accountability did not.</p>
-    </div>
-    ''')
-    
-    # Repeating issues
-    book_content.append('''
-    <div style="margin:40px 0;">
-        <h2 style="color:#00267F; font-size:1.8rem; border-bottom:2px solid #FFC726; padding-bottom:6px;">The Groundhog Day Pattern</h2>
-        <table style="width:100%; border-collapse:collapse; margin:16px 0;">
-            <thead><tr style="background:#00267F; color:white;"><th>Issue</th><th>First Flagged</th><th>Last Flagged</th><th>Years</th><th>Status</th></tr></thead>
-            <tbody>
-                <tr><td>SOE Consolidation not done</td><td>2008</td><td>2023</td><td>15 years</td><td style="color:#DC2626;">❌ Unresolved</td></tr>
-                <tr><td>Asset Registers deficient</td><td>2003</td><td>2023</td><td>20 years</td><td style="color:#DC2626;">❌ Unresolved</td></tr>
-                <tr><td>Bank Reconciliations not done</td><td>2004</td><td>2023</td><td>19 years</td><td style="color:#DC2626;">❌ Unresolved</td></tr>
-                <tr><td>Pension Liability hidden</td><td>2008</td><td>2023</td><td>15 years</td><td style="color:#DC2626;">❌ Unresolved</td></tr>
-                <tr><td>Tax Receivables unverified</td><td>2008</td><td>2023</td><td>15 years</td><td style="color:#DC2626;">❌ Unresolved</td></tr>
-                <tr><td>Staff shortages at Audit Office</td><td>2006</td><td>2023</td><td>17 years</td><td style="color:#DC2626;">❌ Unresolved</td></tr>
-            </tbody>
-        </table>
-        <p style="font-style:italic; color:#555; text-align:center;">The same issues, year after year. The same warnings, decade after decade.</p>
-    </div>
-    ''')
-    
-    # Cost of Inaction
-    book_content.append('''
-    <div style="margin:40px 0;">
-        <h2 style="color:#00267F; font-size:1.8rem; border-bottom:2px solid #FFC726; padding-bottom:6px;">The Cost of Inaction</h2>
-        <table style="width:100%; border-collapse:collapse; margin:16px 0;">
-            <thead><tr style="background:#DC2626; color:white;"><th>Category</th><th>Amount</th></tr></thead>
-            <tbody>
-                <tr><td>Deficits accumulated (2003-2023)</td><td style="color:#DC2626;">-$9.86B</td></tr>
-                <tr><td>Debt increase (2003-2023)</td><td style="color:#DC2626;">+$10.01B</td></tr>
-                <tr><td>Unverified Tax Receivables</td><td style="color:#DC2626;">$2.43B</td></tr>
-                <tr><td>Asset Discrepancy</td><td style="color:#F59E0B;">$719M</td></tr>
-                <tr><td>Hidden Pension Liability</td><td style="color:#DC2626;">$4.3B+</td></tr>
-                <tr><td>SOE Long-term Debt</td><td style="color:#DC2626;">$732.5M</td></tr>
-                <tr><td style="font-weight:700;">TOTAL</td><td style="font-weight:700; color:#DC2626;">~$28.7B+</td></tr>
-            </tbody>
-        </table>
-        <p style="font-weight:600; color:#DC2626; text-align:center;">~$28.7B+ in unverified, hidden, or questionable amounts.</p>
-    </div>
-    ''')
-    
-    # SOE Crisis Summary
-    book_content.append('''
-    <div style="margin:40px 0;">
-        <h2 style="color:#00267F; font-size:1.8rem; border-bottom:2px solid #FFC726; padding-bottom:6px;">The State-Owned Enterprise Crisis</h2>
-        <table style="width:100%; border-collapse:collapse; margin:16px 0;">
-            <thead><tr style="background:#00267F; color:white;"><th>SOE</th><th>Status</th><th>Debt</th><th>Pension Liability</th><th>Arrears</th></tr></thead>
-            <tbody>
-                <tr><td><strong>GAIA</strong></td><td style="color:#DC2626;">Going concern warning</td><td>$140M</td><td>Unknown</td><td>Unknown</td></tr>
-                <tr><td><strong>Transport Board</strong></td><td style="color:#DC2626;">Technically insolvent</td><td>Unknown</td><td>Unknown</td><td>Unknown</td></tr>
-                <tr><td><strong>Barbados Water Authority</strong></td><td style="color:#F59E0B;">Cash flow issues</td><td>$70M</td><td>$130M</td><td>$14M+</td></tr>
-                <tr><td><strong>HOPE Inc.</strong></td><td style="color:#DC2626;">Technically insolvent</td><td>$54M</td><td>Unknown</td><td>Unknown</td></tr>
-            </tbody>
-        </table>
-        <p style="margin-top:12px;"><strong>Total SOE Long-term Debt: $732.5M</strong></p>
-        <p><strong>Total SOE Unfunded Pension Liabilities: $282.7M</strong></p>
-    </div>
-    ''')
-    
-    # Conclusion
+    # ========================================================================
+    # CONCLUSION SECTION WITH SOLUTION PROVERBS
+    # ========================================================================
     book_content.append('''
     <div style="margin:50px 0 30px;">
-        <h2 style="color:#00267F; font-size:2rem; border-bottom:3px solid #FFC726; padding-bottom:6px;">Conclusion</h2>
-        <h3 style="color:#1a1a2e; font-size:1.4rem; margin-top:12px;">The Answer</h3>
-        <p style="margin-top:10px;">
-            <strong>How did we get here?</strong>
-        </p>
-        <p>
-            We got here because the same issues were flagged year after year and nothing was done.
-        </p>
-        <p>
-            We got here because there were no consequences for failure.
-        </p>
-        <p>
-            We got here because accountability was replaced by acceptance.
-        </p>
-        <p>
-            We got here because the Auditor General's warnings were ignored.
-        </p>
-        <p style="font-weight:600; color:#00267F; font-size:1.2rem; margin-top:16px;">
-            The question is not "How did we get here?"
-        </p>
-        <p style="font-weight:600; color:#DC2626; font-size:1.2rem;">
-            The question is: "What are we going to do about it?"
-        </p>
-    </div>
-    ''')
-    
-    # Final Word
-    book_content.append('''
-    <div style="background:#00267F; color:white; padding:30px 30px; border-radius:8px; margin:30px 0;">
-        <div style="text-align:center; font-size:2rem; margin-bottom:8px;">🇧🇧</div>
-        <h3 style="color:#FFC726; text-align:center; font-size:1.6rem;">The Final Word</h3>
-        <p style="margin-top:12px; color:#f0f0f0;">
-            This book is not about blame. It is about accountability.
-        </p>
-        <p style="color:#f0f0f0;">
-            The Auditor General has done his job. For 20 years, he has flagged the same issues. The government has acknowledged them but has not fixed them.
-        </p>
-        <p style="color:#f0f0f0;">
-            Barbadians deserve to know the state of their country's finances. They deserve a clean audit opinion. They deserve accountability.
-        </p>
-        <p style="color:#FFC726; font-weight:600; font-size:1.2rem; text-align:center; margin-top:12px;">
-            The question is: Will we get it?
-        </p>
-        <div style="text-align:center; margin-top:16px; font-style:italic; color:#BFDBFE;">
-            "When de bottom drop out, e hard to patch it."
-            <br>
-            — Bajan Proverb, 2023
+        <h2 style="color:#00267F; font-size:2.2rem; border-bottom:3px solid #FFC726; padding-bottom:6px;">Conclusion: The Path Forward</h2>
+        
+        <div style="background:#00267F; color:white; padding:25px 30px; border-radius:12px; margin:20px 0; border-left:6px solid #FFC726;">
+            <p style="font-size:1.1rem; color:#BFDBFE; margin-bottom:16px;">
+                <strong>The question is not "How did we get here?"</strong>
+            </p>
+            <p style="font-size:1.3rem; font-weight:600; color:#FFC726;">
+                The question is: "What are we going to do about it?"
+            </p>
+            <p style="margin-top:12px; color:#f0f0f0;">
+                The Auditor General has done his job. For 20 years, he has flagged the same issues. 
+                The government has acknowledged them but has not fixed them.
+            </p>
+            <p style="color:#f0f0f0;">
+                Barbadians deserve to know the state of their country's finances. 
+                They deserve a clean audit opinion. They deserve accountability.
+            </p>
+            <p style="color:#FFC726; font-weight:600; font-size:1.1rem; margin-top:12px;">
+                The solutions are not complex. They require discipline, integrity, and follow-through.
+            </p>
         </div>
+    ''')
+    
+    # Solution proverbs
+    book_content.append('''
+        <h3 style="color:#00267F; font-size:1.5rem; margin-top:20px;">💡 Bajan Wisdom for the Way Forward</h3>
+        <p style="color:#555; margin-bottom:16px;">
+            The wisdom of Barbados' elders, preserved in "De Mortar-Pestle," offers guidance for fixing the financial accountability crisis.
+        </p>
+    ''')
+    
+    for sol in SOLUTION_PROVERBS:
+        book_content.append(f'''
+        <div style="background:#f8f5f0; border-radius:8px; padding:12px 16px; margin:8px 0; border-left:3px solid #10B981;">
+            <div style="font-style:italic; color:#00267F; font-weight:600; font-size:1.05rem;">"{sol['text']}"</div>
+            <div style="color:#555; font-size:0.85rem;">— {sol['meaning']}</div>
+            <div style="color:#00267F; font-size:0.85rem; margin-top:4px; font-weight:500;">✓ {sol['action']}</div>
+            <div style="font-size:0.7rem; color:#888; margin-top:2px;">Source: De Mortar-Pestle, p. {sol['page']}</div>
+        </div>
+        ''')
+    
+    book_content.append('''
     </div>
     ''')
     
-    # ========================================================================
-    # APPENDICES (BOOK ONLY - WITH CREDITS HERE)
-    # ========================================================================
+    # Appendices
     book_content.append('''
     <div style="margin:50px 0 30px;">
         <h2 style="color:#00267F; font-size:2.2rem; border-bottom:3px solid #FFC726; padding-bottom:6px;">Appendices</h2>
@@ -1057,33 +1092,83 @@ def generate_book_html():
     book_content.append('''
     <div style="margin:30px 0;">
         <h3 style="color:#00267F; font-size:1.5rem;">Appendix A: Complete Financial Data (2003-2026)</h3>
-        <table style="width:100%; border-collapse:collapse; margin:16px 0; font-size:0.8rem;">
-            <thead><tr style="background:#00267F; color:white;"><th>Year</th><th>Revenue ($B)</th><th>Expenditure ($B)</th><th>Deficit ($B)</th><th>Debt ($B)</th><th>Debt/GDP</th><th>Opinion</th></tr></thead>
+        <table>
+            <thead><tr><th>Year</th><th>Revenue</th><th>Expenditure</th><th>Deficit</th><th>Debt</th><th>Debt/GDP</th><th>Opinion</th></tr></thead>
             <tbody>
     ''')
-    
     for year in range(2003, 2027):
         data = FINANCIAL_DATA[year]
-        opinion_emoji = "✅" if data['opinion'] == 'Clean' else "⚠️" if data['opinion'] == 'Disclaimer' else "❌" if data['opinion'] == 'Adverse' else "⏳"
-        deficit_str = f"{data['deficit']:.3f}"
-        if data['deficit'] >= 0:
-            deficit_str = f"+{deficit_str}"
+        emoji = "✅" if data['opinion'] == 'Clean' else "⚠️" if data['opinion'] == 'Disclaimer' else "❌" if data['opinion'] == 'Adverse' else "⏳"
         book_content.append(f'''
-                <tr><td>{year}</td><td>${data['revenue']:.3f}</td><td>${data['expenditure']:.3f}</td><td style="color:{'#10B981' if data['deficit'] >= 0 else '#DC2626'};">{deficit_str}</td><td>${data['debt']:.3f}</td><td>{data['debt_pct']:.1f}%</td><td>{opinion_emoji} {data['opinion']}</td></tr>
+            <tr><td>{year}</td><td>${data['revenue']:.3f}B</td><td>${data['expenditure']:.3f}B</td><td style="color:{'#10B981' if data['deficit'] >= 0 else '#DC2626'};">{data['deficit']:.3f}B</td><td>${data['debt']:.3f}B</td><td>{data['debt_pct']:.1f}%</td><td>{emoji} {data['opinion']}</td></tr>
         ''')
-    
     book_content.append('''
             </tbody>
         </table>
     </div>
     ''')
     
-    # Appendix B - Repeating Issues
+    # Appendix B - All Proverbs with Why They Fit
     book_content.append('''
     <div style="margin:30px 0;">
-        <h3 style="color:#00267F; font-size:1.5rem;">Appendix B: Repeating Issues Tracker</h3>
-        <table style="width:100%; border-collapse:collapse; margin:16px 0;">
-            <thead><tr style="background:#00267F; color:white;"><th>Issue</th><th>First Flagged</th><th>Last Flagged</th><th>Years</th><th>Status</th></tr></thead>
+        <h3 style="color:#00267F; font-size:1.5rem;">Appendix B: Bajan Proverbs from "De Mortar-Pestle"</h3>
+        <p style="font-style:italic; color:#555; margin-top:8px;">
+            All proverbs are from <strong>"De Mortar-Pestle: A Collection of Barbadian Proverbs"</strong> by G. Addinton Forde (1987).
+            Used with attribution.
+        </p>
+        <table>
+            <thead><tr><th>Year</th><th>Proverb</th><th>Meaning</th><th>Why It Fits</th><th>Page</th></tr></thead>
+            <tbody>
+    ''')
+    for year in range(2003, 2027):
+        proverb = PROVERBS.get(year, {"text": "", "meaning": "", "page": 0, "why": ""})
+        book_content.append(f'''
+            <tr>
+                <td>{year}</td>
+                <td style="font-style:italic;">"{proverb['text']}"</td>
+                <td>{proverb['meaning']}</td>
+                <td style="font-size:0.8rem; color:#555;">{proverb['why']}</td>
+                <td>p. {proverb['page']}</td>
+            </tr>
+        ''')
+    book_content.append('''
+            </tbody>
+        </table>
+    </div>
+    ''')
+    
+    # Appendix C - Solution Proverbs
+    book_content.append('''
+    <div style="margin:30px 0;">
+        <h3 style="color:#00267F; font-size:1.5rem;">Appendix C: Solution Proverbs — The Path Forward</h3>
+        <p style="font-style:italic; color:#555; margin-top:8px;">
+            Bajan wisdom from "De Mortar-Pestle" applied to the financial accountability crisis.
+        </p>
+        <table>
+            <thead><tr><th>Proverb</th><th>Meaning</th><th>Action for Barbados</th><th>Page</th></tr></thead>
+            <tbody>
+    ''')
+    for sol in SOLUTION_PROVERBS:
+        book_content.append(f'''
+            <tr>
+                <td style="font-style:italic;">"{sol['text']}"</td>
+                <td>{sol['meaning']}</td>
+                <td style="font-size:0.8rem;">{sol['action']}</td>
+                <td>p. {sol['page']}</td>
+            </tr>
+        ''')
+    book_content.append('''
+            </tbody>
+        </table>
+    </div>
+    ''')
+    
+    # Appendix D - Repeating Issues
+    book_content.append('''
+    <div style="margin:30px 0;">
+        <h3 style="color:#00267F; font-size:1.5rem;">Appendix D: Repeating Issues Tracker</h3>
+        <table>
+            <thead><tr><th>Issue</th><th>First Flagged</th><th>Last Flagged</th><th>Years</th><th>Status</th></tr></thead>
             <tbody>
                 <tr><td>SOE Consolidation not done</td><td>2008</td><td>2023</td><td>15 years</td><td style="color:#DC2626;">❌ Unresolved</td></tr>
                 <tr><td>Asset Registers deficient</td><td>2003</td><td>2023</td><td>20 years</td><td style="color:#DC2626;">❌ Unresolved</td></tr>
@@ -1096,74 +1181,26 @@ def generate_book_html():
     </div>
     ''')
     
-    # Appendix C - SOE Crisis
+    # Appendix E - Credits
     book_content.append('''
     <div style="margin:30px 0;">
-        <h3 style="color:#00267F; font-size:1.5rem;">Appendix C: State-Owned Enterprise Crisis Summary</h3>
-        <table style="width:100%; border-collapse:collapse; margin:16px 0;">
-            <thead><tr style="background:#00267F; color:white;"><th>SOE</th><th>Status</th><th>Debt</th><th>Pension Liability</th><th>Arrears</th></tr></thead>
-            <tbody>
-                <tr><td><strong>GAIA</strong></td><td style="color:#DC2626;">Going concern warning</td><td>$140M</td><td>Unknown</td><td>Unknown</td></tr>
-                <tr><td><strong>Transport Board</strong></td><td style="color:#DC2626;">Technically insolvent</td><td>Unknown</td><td>Unknown</td><td>Unknown</td></tr>
-                <tr><td><strong>Barbados Water Authority</strong></td><td style="color:#F59E0B;">Cash flow issues</td><td>$70M</td><td>$130M</td><td>$14M+</td></tr>
-                <tr><td><strong>HOPE Inc.</strong></td><td style="color:#DC2626;">Technically insolvent</td><td>$54M</td><td>Unknown</td><td>Unknown</td></tr>
-            </tbody>
-        </table>
-        <p style="margin-top:12px;"><strong>Total SOE Long-term Debt: $732.5M</strong></p>
-        <p><strong>Total SOE Unfunded Pension Liabilities: $282.7M</strong></p>
-    </div>
-    ''')
-    
-    # Appendix D - The Bajan Proverbs
-    book_content.append('''
-    <div style="margin:30px 0;">
-        <h3 style="color:#00267F; font-size:1.5rem;">Appendix D: The Bajan Proverbs — Full Collection</h3>
-        <p style="font-style:italic; color:#555; margin-top:8px;">
-            This book's proverbs are drawn from <strong>"De Mortar-Pestle: A Collection of Barbadian Proverbs"</strong> by G. Addinton Forde (1987).
-        </p>
-        <table style="width:100%; border-collapse:collapse; margin:16px 0; font-size:0.85rem;">
-            <thead><tr style="background:#00267F; color:white;"><th>Year</th><th>Proverb</th><th>Meaning</th></tr></thead>
-            <tbody>
-    ''')
-    
-    for year in range(2003, 2027):
-        proverb = PROVERBS.get(year, "")
-        meaning = PROVERB_MEANINGS.get(year, "")
-        book_content.append(f'''
-                <tr><td>{year}</td><td style="font-style:italic;">"{proverb}"</td><td>{meaning}</td></tr>
-        ''')
-    
-    book_content.append('''
-            </tbody>
-        </table>
-    </div>
-    ''')
-    
-    # Appendix E - Sources & Credits (BOOK ONLY)
-    book_content.append('''
-    <div style="margin:30px 0;">
-        <h3 style="color:#00267F; font-size:1.5rem;">Appendix E: Sources & Acknowledgments</h3>
+        <h3 style="color:#00267F; font-size:1.5rem;">Appendix E: Acknowledgments</h3>
         
         <div style="background:#f8f5f0; padding:20px 24px; border-radius:10px; border:2px solid #00267F; margin:20px 0;">
-            <h4 style="color:#00267F; margin-bottom:8px;">Author & Compiler</h4>
-            <p style="font-size:1.05rem; font-weight:700; color:#00267F;">Matthew A. A. Blackman</p>
+            <h4 style="color:#00267F; margin-bottom:8px;">📖 Author & Compiler</h4>
+            <p style="font-weight:700; color:#00267F; font-size:1.1rem;">Matthew A. A. Blackman</p>
             <p style="color:#333;">
-                This book was researched, compiled, and written by Matthew A. A. Blackman. 
-                The author spent countless hours analyzing 24 years of Auditor General's reports, 
-                financial statements, and government documents to piece together the complete story 
-                of Barbados' financial accountability journey.
-            </p>
-            <p style="color:#333; margin-top:8px;">
-                The goal was to make this critical information accessible to every Barbadian — 
-                not buried in government archives, but presented in a clear, compelling narrative 
-                that tells the truth about where Barbados has been and where it needs to go.
+                This dashboard and book were researched, compiled, and written by Matthew A. A. Blackman.
+                The author spent countless hours analyzing 24 years of Auditor General's reports,
+                financial statements, and government documents to piece together the complete
+                story of Barbados' financial accountability journey.
             </p>
         </div>
         
         <div style="background:#f8f5f0; padding:20px 24px; border-radius:10px; border:2px solid #FFC726; margin:20px 0;">
-            <h4 style="color:#00267F; margin-bottom:8px;">📖 The Proverbs — Credit to G. Addinton Forde</h4>
+            <h4 style="color:#00267F; margin-bottom:8px;">📖 Proverbs — G. Addinton Forde</h4>
             <p style="color:#333;">
-                The Bajan proverbs that open each chapter of this book are drawn from the definitive collection:
+                The Bajan proverbs in this book are drawn from the definitive collection:
             </p>
             <p style="font-weight:700; color:#00267F; font-size:1.1rem; margin:8px 0;">
                 "De Mortar-Pestle: A Collection of Barbadian Proverbs"<br>
@@ -1172,46 +1209,30 @@ def generate_book_html():
             </p>
             <p style="color:#333;">
                 G. Addinton Forde spent years collecting and documenting these proverbs, ensuring that 
-                the wisdom of Barbados' elders would not be lost. His work preserves the wit, insight, 
-                and cultural heritage of the Barbadian people. This book would be incomplete without 
-                his contribution.
+                the wisdom of Barbados' elders would not be lost.
             </p>
             <p style="color:#555; font-style:italic; margin-top:8px;">
                 <strong>From Forde's introduction:</strong><br>
                 "These proverbs illustrate a profundity of thought, expressed in simple, clear and concise language, 
-                with an extraordinary precision in the use of imagery. This is noteworthy, since the people who 
-                coined them had little formal education."
+                with an extraordinary precision in the use of imagery."
             </p>
         </div>
         
         <div style="background:#f8f5f0; padding:20px 24px; border-radius:10px; border:2px solid #00267F; margin:20px 0;">
             <h4 style="color:#00267F; margin-bottom:8px;">🏛️ The Auditor General</h4>
-            <p style="font-size:1.05rem; font-weight:700; color:#00267F;">Leigh E. Trotman, CPA</p>
-            <p style="color:#333;">
-                Auditor General of Barbados (2006-2026)
-            </p>
-            <p style="color:#333; margin-top:8px;">
-                The Auditor General and his staff have produced the reports that form the foundation of this book. 
-                For over two decades, they have done their duty — flagging the same issues, year after year, 
-                warning Parliament and the public of the problems that have persisted.
-            </p>
-            <p style="color:#333; margin-top:8px;">
-                This book is a testament to their work. The Auditor General has done his job. 
-                Now it is time for the rest of the country to do theirs.
-            </p>
+            <p style="font-weight:700; color:#00267F;">Leigh E. Trotman, CPA</p>
+            <p style="color:#333;">Auditor General of Barbados (2006-2026)</p>
         </div>
         
         <div style="background:#f8f5f0; padding:20px 24px; border-radius:10px; border:2px solid #8B5CF6; margin:20px 0;">
-            <h4 style="color:#00267F; margin-bottom:8px;">🤖 AI-Assisted Compilation</h4>
-            <p style="font-weight:700; color:#00267F;">DeepSeek (AI Assistant)</p>
+            <h4 style="color:#00267F; margin-bottom:8px;">🤖 AI Assistance</h4>
+            <p style="font-weight:700; color:#00267F;">DeepSeek</p>
             <p style="color:#333;">
-                The compilation, organization, and formatting of this book were assisted by DeepSeek, 
-                an artificial intelligence language model.
+                The compilation, organization, and formatting of this dashboard and book were assisted by DeepSeek.
             </p>
             <p style="color:#555; font-size:0.9rem; margin-top:8px;">
                 <strong>Disclaimer:</strong> While AI assisted in compilation and formatting, all data comes from 
-                official government sources. The analysis, conclusions, and narrative are based on the actual 
-                Auditor General's reports and financial statements.
+                official government sources.
             </p>
         </div>
         
@@ -1225,23 +1246,7 @@ def generate_book_html():
     </div>
     ''')
     
-    # Primary Sources
-    book_content.append('''
-    <div style="margin:30px 0;">
-        <h3 style="color:#00267F; font-size:1.5rem;">Primary Sources</h3>
-        <ol style="margin-left:20px; line-height:1.8;">
-            <li><strong>Auditor General's Reports (2003-2024)</strong> — Office of the Auditor General, Barbados. Laid before Parliament annually.</li>
-            <li><strong>Financial Statements of the Government of Barbados</strong> — Prepared by the Accountant General. Audited by the Barbados Audit Office.</li>
-            <li><strong>Fiscal Framework Documents (2026-2029)</strong> — Ministry of Finance, Economic Affairs and Investment. Laid before Parliament.</li>
-            <li><strong>BERT Programme Documents</strong> — BERT 2018, BERT 2022, BERT 2026. Barbados Economic Recovery and Transformation Plan.</li>
-            <li><strong>Estimates of Revenue and Expenditure (2026-2027)</strong> — Government of Barbados. Laid before Parliament.</li>
-            <li><strong>GAIA Financial Statements (2024)</strong> — Grantley Adams International Airport Inc. Audited by Ernst &amp; Young Ltd.</li>
-            <li><strong>Special Audits</strong> — Barbados Water Authority (2012), Transport Board (2019), HOPE Inc. (2025), and others.</li>
-        </ol>
-    </div>
-    ''')
-    
-    # Footer with credits
+    # Footer
     book_content.append('''
     <div class="footer">
         <div style="font-size:2rem; margin-bottom:8px;">🇧🇧</div>
@@ -1249,10 +1254,13 @@ def generate_book_html():
         <p>Barbados' 20-Year Journey from Clean Opinions to Financial Crisis</p>
         <p style="margin-top:8px;">Based on 24 Years of Auditor General's Reports (2003-2026)</p>
         <p style="margin-top:8px; font-size:0.8rem;">
-            Author: Matthew A. A. Blackman &nbsp;|&nbsp; Proverbs: G. Addinton Forde &nbsp;|&nbsp; AI Assistance: DeepSeek
+            Author: Matthew A. A. Blackman &nbsp;|&nbsp; Proverbs: G. Addinton Forde, "De Mortar-Pestle" (1987)
         </p>
         <p style="margin-top:8px; font-size:0.7rem; color:#aaa;">
-            "When de bottom drop out, e hard to patch it." — Bajan Proverb, 2023
+            "Don' wait till de horse get out to shut de stable door." — Bajan Proverb, De Mortar-Pestle, p. 3
+        </p>
+        <p style="margin-top:4px; font-size:0.7rem; color:#aaa; font-style:italic;">
+            Dedicated to the people of Barbados — who deserve accountability.
         </p>
     </div>
     ''')
@@ -1326,24 +1334,6 @@ def generate_book_html():
                 margin-top: 10px;
                 letter-spacing: 4px;
             }}
-            .part {{
-                margin: 50px 0 30px;
-                padding: 20px 30px;
-                background: #00267F;
-                color: white;
-                border-radius: 8px;
-                text-align: center;
-            }}
-            .part h2 {{
-                font-size: 1.8rem;
-                font-weight: 400;
-                letter-spacing: 2px;
-            }}
-            .part .sub {{
-                font-size: 1rem;
-                opacity: 0.8;
-                font-style: italic;
-            }}
             .chapter {{
                 margin: 40px 0 30px;
                 padding-bottom: 10px;
@@ -1369,18 +1359,17 @@ def generate_book_html():
                 padding: 10px 20px;
                 border-radius: 6px;
                 border-left: 4px solid #FFC726;
-                margin: 8px 0 16px;
+                margin: 8px 0 4px;
             }}
             .chapter .proverb-meaning {{
-                font-size: 0.95rem;
+                font-size: 0.9rem;
                 color: #555;
-                margin-top: -6px;
-                margin-bottom: 16px;
-                font-style: italic;
+                margin-top: 2px;
+                margin-bottom: 4px;
             }}
             .metric-grid {{
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
                 gap: 12px;
                 margin: 16px 0 20px;
                 background: #f8f5f0;
@@ -1400,8 +1389,6 @@ def generate_book_html():
                 font-weight: 700;
                 color: #00267F;
             }}
-            .metric-item .value.positive {{ color: #10B981; }}
-            .metric-item .value.negative {{ color: #DC2626; }}
             .opinion-badge {{
                 display: inline-block;
                 padding: 4px 16px;
@@ -1436,22 +1423,11 @@ def generate_book_html():
                 margin: 6px 0;
                 border: 1px solid #93C5FD;
             }}
-            .summary-box {{
-                background: #00267F;
-                color: white;
-                padding: 20px 24px;
-                border-radius: 8px;
-                margin: 20px 0;
-            }}
-            .summary-box h4 {{ color: #FFC726; }}
-            .summary-box ul {{ list-style: none; padding: 0; }}
-            .summary-box li {{ padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }}
-            .summary-box li:last-child {{ border-bottom: none; }}
             table {{
                 width: 100%;
                 border-collapse: collapse;
                 margin: 16px 0 20px;
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }}
             table th {{
                 background: #00267F;
@@ -1476,14 +1452,6 @@ def generate_book_html():
                 .container {{ padding: 20px 16px; }}
                 .cover h1 {{ font-size: 2rem; }}
                 .metric-grid {{ grid-template-columns: repeat(2, 1fr); }}
-                table {{ font-size: 0.75rem; }}
-                table th, table td {{ padding: 4px 6px; }}
-            }}
-            @media print {{
-                body {{ background: white; }}
-                .container {{ box-shadow: none; padding: 20px; }}
-                .chapter {{ page-break-inside: avoid; }}
-                .part {{ page-break-after: avoid; }}
             }}
         </style>
     </head>
@@ -1501,7 +1469,6 @@ def generate_book_html():
 # RENDER FUNCTIONS
 # ============================================================================
 def render_chapter_card(year):
-    """Render a single chapter card for the story arc view with working navigation."""
     data = FINANCIAL_DATA[year]
     special = SPECIAL_AUDITS.get(year, {'audits': [], 'issues': []})
     chapter = CHAPTER_TITLES.get(year, {"title": f"Year {year}", "tagline": ""})
@@ -1509,62 +1476,43 @@ def render_chapter_card(year):
     emoji = get_opinion_emoji(opinion)
     color = get_opinion_color(opinion)
     opinion_class = get_chapter_opinion_class(opinion)
+    proverb = PROVERBS.get(year, {"text": "", "meaning": "", "page": 0, "why": ""})
     
-    issue_count = len(special.get('issues', []))
     audit_count = len(special.get('audits', []))
-    
-    critical_count = 0
-    high_count = 0
-    for audit in special.get('audits', []):
-        severity = audit.get('severity', 'Medium')
-        if severity == 'Critical':
-            critical_count += 1
-        elif severity == 'High':
-            high_count += 1
-    
-    severity_parts = []
-    if critical_count > 0:
-        severity_parts.append(f"🔴 {critical_count} Critical")
-    if high_count > 0:
-        severity_parts.append(f"🟠 {high_count} High")
-    if audit_count > 0 and not severity_parts:
-        severity_parts.append(f"📄 {audit_count} audits")
-    
-    severity_text = " | ".join(severity_parts) if severity_parts else "No special audits"
+    critical_count = sum(1 for a in special.get('audits', []) if a.get('severity') == 'Critical')
     
     all_years = list(range(2003, 2027))
     chapter_num = all_years.index(year) + 1
     
-    col1, col2 = st.columns([5, 1])
-    
-    with col1:
-        st.markdown(f"""
-        <div class="chapter-card" style="border-left: 4px solid {color};">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap;">
-                <div style="flex:1;">
-                    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-                        <span class="chapter-number">Chapter {chapter_num}</span>
-                        <span class="{opinion_class}">{emoji} {opinion}</span>
-                        <span style="font-size:0.75rem; color:#888;">{get_era_badge(year)}</span>
-                    </div>
-                    <div class="chapter-title" style="color:{color};">{chapter['title']}</div>
-                    <div class="chapter-tagline">"{chapter['tagline']}"</div>
-                    <div class="chapter-stats">
-                        📊 ${data['revenue']:.2f}B Revenue · {'' if data['deficit'] >= 0 else ''}${data['deficit']:.2f}B Deficit · ${data['debt']:.2f}B Debt
-                    </div>
-                    <div class="chapter-stats">
-                        💥 {issue_count} issues · {audit_count} special audits · {severity_text}
-                    </div>
+    st.markdown(f"""
+    <div class="chapter-card" style="border-left: 4px solid {color};">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap;">
+            <div style="flex:1;">
+                <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                    <span class="chapter-number">Chapter {chapter_num}</span>
+                    <span class="{opinion_class}">{emoji} {opinion}</span>
+                    <span style="font-size:0.75rem; color:#888;">{get_era_badge(year)}</span>
+                </div>
+                <div class="chapter-title" style="color:{color};">{chapter['title']}</div>
+                <div class="chapter-tagline">"{chapter['tagline']}"</div>
+                <div style="font-style:italic; color:#00267F; font-size:0.9rem; margin:4px 0;">
+                    "{proverb['text']}"
+                </div>
+                <div class="chapter-stats">
+                    📊 ${data['revenue']:.2f}B Revenue · {'' if data['deficit'] >= 0 else ''}${data['deficit']:.2f}B Deficit · ${data['debt']:.2f}B Debt
+                </div>
+                <div class="chapter-stats">
+                    📄 {audit_count} special audits · {critical_count} critical issues
                 </div>
             </div>
         </div>
-        """, unsafe_allow_html=True)
+    </div>
+    """, unsafe_allow_html=True)
     
-    with col2:
-        if st.button(f"Explore {year}", key=f"explore_{year}", use_container_width=True):
-            st.session_state['selected_year'] = year
-            st.session_state['view_mode'] = 'year'
-            st.rerun()
+    if st.button(f"Explore {year}", key=f"explore_{year}", use_container_width=True):
+        st.session_state['selected_year'] = year
+        st.session_state['view_mode'] = 'year'
+        st.rerun()
 
 def render_act_header(act_name, act_subtitle, act_color, act_class, years):
     count = len(years)
@@ -1594,8 +1542,8 @@ def render_full_story():
         <p style="font-size:1.05rem; margin-bottom:0;">
         This is the complete narrative of Barbados' financial accountability journey, told through 
         <strong>24 years of Auditor General's reports</strong>. From clean opinions to the breaking point,
-        from crisis to the path forward. Each chapter tells a part of the story. Click <strong>"Explore"</strong> on any year
-        to dive into the details.
+        from crisis to the path forward. Each chapter opens with a Bajan proverb from 
+        <strong>"De Mortar-Pestle"</strong> by G. Addinton Forde (1987).
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -1649,12 +1597,63 @@ def render_full_story():
     st.caption("The future is unwritten. Will Barbados fix the foundation, or continue with the same pattern?")
     for year in range(2024, 2027):
         render_chapter_card(year)
+    
+    # ========================================================================
+    # CONCLUSION WITH SOLUTION PROVERBS
+    # ========================================================================
+    st.markdown("---")
+    render_conclusion()
+
+def render_conclusion():
+    """Render the conclusion section with solution proverbs."""
+    
+    st.markdown("""
+    <div class="conclusion-section">
+        <h2>🇧🇧 Conclusion: The Path Forward</h2>
+        <p style="font-size:1.1rem; color:#BFDBFE; margin-bottom:16px;">
+            <strong>The question is not "How did we get here?"</strong>
+        </p>
+        <p class="proverb-text" style="font-size:1.5rem;">
+            The question is: "What are we going to do about it?"
+        </p>
+        <p style="margin-top:12px; color:#f0f0f0;">
+            The Auditor General has done his job. For 20 years, he has flagged the same issues. 
+            The government has acknowledged them but has not fixed them.
+        </p>
+        <p style="color:#f0f0f0;">
+            Barbadians deserve to know the state of their country's finances. 
+            They deserve a clean audit opinion. They deserve accountability.
+        </p>
+        <p style="color:#FFC726; font-weight:600; font-size:1.1rem; margin-top:12px;">
+            The solutions are not complex. They require discipline, integrity, and follow-through.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("### 💡 Bajan Wisdom for the Way Forward")
+    st.markdown("""
+    <p style="color:#555; margin-bottom:16px;">
+        The wisdom of Barbados' elders, preserved in <strong>"De Mortar-Pestle"</strong> by G. Addinton Forde (1987), 
+        offers guidance for fixing the financial accountability crisis.
+    </p>
+    """, unsafe_allow_html=True)
+    
+    cols = st.columns(2)
+    for i, sol in enumerate(SOLUTION_PROVERBS):
+        with cols[i % 2]:
+            st.markdown(f"""
+            <div style="background:#f8f5f0; border-radius:8px; padding:12px 16px; margin:8px 0; border-left:3px solid #10B981; height:100%;">
+                <div style="font-style:italic; color:#00267F; font-weight:600; font-size:1.05rem;">"{sol['text']}"</div>
+                <div style="color:#555; font-size:0.85rem;">— {sol['meaning']}</div>
+                <div style="color:#00267F; font-size:0.85rem; margin-top:4px; font-weight:500;">✓ {sol['action']}</div>
+                <div style="font-size:0.7rem; color:#888; margin-top:2px;">Source: De Mortar-Pestle, p. {sol['page']}</div>
+            </div>
+            """, unsafe_allow_html=True)
 
 def render_year_view(year):
     data = FINANCIAL_DATA[year]
     special = SPECIAL_AUDITS.get(year, {'audits': [], 'issues': []})
-    proverb = PROVERBS.get(year, "Wisdom comes from experience.")
-    meaning = PROVERB_MEANINGS.get(year, "")
+    proverb = PROVERBS.get(year, {"text": "Wisdom comes from experience.", "meaning": "", "page": 0, "why": ""})
     context = YEAR_CONTEXT.get(year, "")
     chapter = CHAPTER_TITLES.get(year, {"title": f"Year {year}", "tagline": ""})
     opinion = data['opinion']
@@ -1675,8 +1674,10 @@ def render_year_view(year):
         st.markdown(f"""
         <div class="proverb-card">
             <div style="color:#BFDBFE;font-size:0.75rem;">📖 Bajan Proverb · {year}</div>
-            <div class="proverb-text">"{proverb}"</div>
-            <div class="proverb-meaning">— {meaning}</div>
+            <div class="proverb-text">"{proverb['text']}"</div>
+            <div class="proverb-meaning">— {proverb['meaning']}</div>
+            <div class="proverb-source">Source: "De Mortar-Pestle" by G. Addinton Forde (1987), p. {proverb['page']}</div>
+            <div class="proverb-why">💡 <strong>Why this proverb fits:</strong> {proverb['why']}</div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -1702,51 +1703,37 @@ def render_year_view(year):
     col1, col2, col3, col4 = st.columns(4)
 
     with col1:
-        revenue = data['revenue']
-        revenue_prev = FINANCIAL_DATA.get(year-1, {}).get('revenue', revenue)
-        revenue_change = ((revenue - revenue_prev) / revenue_prev * 100) if revenue_prev != 0 else 0
-        arrow = "▲" if revenue_change > 0 else "▼" if revenue_change < 0 else "→"
-        change_color = "#10B981" if revenue_change > 0 else "#DC2626" if revenue_change < 0 else "#888"
         st.markdown(f"""
         <div class="metric-card">
             <div style="font-size:0.65rem;color:#888;">Revenue</div>
-            <div class="metric-value">{format_currency_billions(revenue)}</div>
-            <div style="font-size:0.7rem;color:{change_color};">{arrow} {abs(revenue_change):.1f}% vs {year-1}</div>
+            <div class="metric-value">{format_currency_billions(data['revenue'])}</div>
         </div>
         """, unsafe_allow_html=True)
 
     with col2:
-        expenditure = data['expenditure']
         st.markdown(f"""
         <div class="metric-card">
             <div style="font-size:0.65rem;color:#888;">Expenditure</div>
-            <div class="metric-value">{format_currency_billions(expenditure)}</div>
-            <div style="font-size:0.7rem;color:#888;">{year} fiscal year</div>
+            <div class="metric-value">{format_currency_billions(data['expenditure'])}</div>
         </div>
         """, unsafe_allow_html=True)
 
     with col3:
-        deficit = data['deficit']
-        deficit_prev = FINANCIAL_DATA.get(year-1, {}).get('deficit', deficit)
-        deficit_improved = deficit > deficit_prev
-        deficit_color = "#10B981" if deficit_improved else "#DC2626" if deficit < 0 else "#888"
+        deficit_color = "#10B981" if data['deficit'] >= 0 else "#DC2626"
         st.markdown(f"""
         <div class="metric-card">
             <div style="font-size:0.65rem;color:#888;">Deficit / Surplus</div>
-            <div class="metric-value" style="color:{deficit_color};">{format_currency_billions(abs(deficit))}</div>
-            <div style="font-size:0.7rem;color:{deficit_color};">{'✅ Improving' if deficit_improved else '⚠️ Worsening'}</div>
+            <div class="metric-value" style="color:{deficit_color};">{format_currency_billions(abs(data['deficit']))}</div>
         </div>
         """, unsafe_allow_html=True)
 
     with col4:
-        debt = data['debt']
-        debt_pct = data.get('debt_pct', 0)
-        debt_color = "#DC2626" if debt_pct > 100 else "#F59E0B" if debt_pct > 80 else "#10B981"
+        debt_color = "#DC2626" if data['debt_pct'] > 100 else "#F59E0B" if data['debt_pct'] > 80 else "#10B981"
         st.markdown(f"""
         <div class="metric-card">
             <div style="font-size:0.65rem;color:#888;">Public Debt</div>
-            <div class="metric-value">{format_currency_billions(debt)}</div>
-            <div style="font-size:0.7rem;color:{debt_color};">{debt_pct:.1f}% of GDP</div>
+            <div class="metric-value">{format_currency_billions(data['debt'])}</div>
+            <div style="font-size:0.7rem;color:{debt_color};">{data['debt_pct']:.1f}% of GDP</div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -1759,7 +1746,8 @@ def render_year_view(year):
         for category, percentage in rev_breakdown.items():
             rev_data.append({'Source': category, 'Amount': data['revenue'] * percentage, 'Percentage': percentage * 100})
         rev_df = pd.DataFrame(rev_data)
-        fig = px.pie(rev_df, values='Amount', names='Source', title=f'Revenue Composition ({year})', color_discrete_sequence=px.colors.sequential.Blues_r, hole=0.4)
+        fig = px.pie(rev_df, values='Amount', names='Source', title=f'Revenue Composition ({year})', 
+                     color_discrete_sequence=px.colors.sequential.Blues_r, hole=0.4)
         fig.update_traces(textposition='inside', textinfo='percent+label', textfont_size=9)
         fig.update_layout(height=350, margin=dict(l=20, r=20, t=40, b=20))
         st.plotly_chart(fig, use_container_width=True)
@@ -1770,7 +1758,8 @@ def render_year_view(year):
         for category, percentage in exp_breakdown.items():
             exp_data.append({'Category': category, 'Amount': data['expenditure'] * percentage, 'Percentage': percentage * 100})
         exp_df = pd.DataFrame(exp_data)
-        fig = px.pie(exp_df, values='Amount', names='Category', title=f'Expenditure Composition ({year})', color_discrete_sequence=px.colors.sequential.Reds_r, hole=0.4)
+        fig = px.pie(exp_df, values='Amount', names='Category', title=f'Expenditure Composition ({year})', 
+                     color_discrete_sequence=px.colors.sequential.Reds_r, hole=0.4)
         fig.update_traces(textposition='inside', textinfo='percent+label', textfont_size=9)
         fig.update_layout(height=350, margin=dict(l=20, r=20, t=40, b=20))
         st.plotly_chart(fig, use_container_width=True)
@@ -1784,7 +1773,7 @@ def render_year_view(year):
                     <span style="color:#DC2626;font-weight:bold;">🔴 CRITICAL:</span> {issue}
                 </div>
                 """, unsafe_allow_html=True)
-            elif any(x in issue.lower() for x in ['unverified', 'discrepancy', 'not done', 'failure', 'crisis', 'still', 'hidden', 'unconfirmed']):
+            elif any(x in issue.lower() for x in ['unverified', 'discrepancy', 'not done', 'failure', 'crisis', 'hidden', 'unconfirmed']):
                 st.markdown(f"""
                 <div class="issue-warning">
                     <span style="color:#D97706;font-weight:bold;">⚠️ WARNING:</span> {issue}
@@ -1803,16 +1792,13 @@ def render_year_view(year):
     if special.get('audits'):
         for audit in special['audits']:
             severity = audit.get('severity', 'Medium')
-            color = '#DC2626' if severity == 'Critical' else '#F59E0B' if severity == 'High' else '#3B82F6'
             with st.expander(f"📄 {audit['title']}", expanded=False):
                 st.markdown(f"""
                 <div style="padding:8px 0;">
                     <div style="font-weight:600;color:#1e293b;font-size:0.9rem;">📋 Summary</div>
                     <div style="color:#475569;font-size:0.9rem;padding-left:12px;padding-bottom:8px;">{audit['summary']}</div>
-                    <div style="font-weight:600;color:#1e293b;font-size:0.9rem;">📄 Details</div>
-                    <div style="color:#475569;font-size:0.9rem;padding-left:12px;padding-bottom:8px;">{audit['details']}</div>
                     <div style="font-weight:600;color:#1e293b;font-size:0.9rem;">⚡ Severity</div>
-                    <div style="color:{color};font-weight:bold;font-size:0.9rem;padding-left:12px;">{severity}</div>
+                    <div style="color:{'#DC2626' if severity == 'Critical' else '#F59E0B' if severity == 'High' else '#3B82F6'};font-weight:bold;font-size:0.9rem;padding-left:12px;">{severity}</div>
                 </div>
                 """, unsafe_allow_html=True)
     else:
@@ -1868,8 +1854,8 @@ def render_year_view(year):
     debt_trend = [FINANCIAL_DATA[y]['debt'] for y in all_years]
 
     fig = make_subplots(specs=[[{"secondary_y": True}]])
-    fig.add_trace(go.Scatter(x=all_years, y=revenue_trend, name='Revenue', line=dict(color='#10B981', width=2.5), hovertemplate='Year: %{x}<br>Revenue: $%{y:.2f}B<extra></extra>'), secondary_y=False)
-    fig.add_trace(go.Scatter(x=all_years, y=debt_trend, name='Debt', line=dict(color='#DC2626', width=2.5, dash='dash'), hovertemplate='Year: %{x}<br>Debt: $%{y:.2f}B<extra></extra>'), secondary_y=True)
+    fig.add_trace(go.Scatter(x=all_years, y=revenue_trend, name='Revenue', line=dict(color='#10B981', width=2.5)), secondary_y=False)
+    fig.add_trace(go.Scatter(x=all_years, y=debt_trend, name='Debt', line=dict(color='#DC2626', width=2.5, dash='dash')), secondary_y=True)
     fig.add_vline(x=year, line_dash="solid", line_color="#FFC726", line_width=3)
     fig.add_annotation(x=year, y=0.5, text=f"{year} ← Selected", showarrow=True, arrowhead=2, ax=0, ay=-40, font=dict(size=12, color="#00267F", weight="bold"))
     fig.add_vrect(x0=2003, x1=2007.5, fillcolor="rgba(16, 185, 129, 0.12)", line_width=0)
@@ -1881,53 +1867,47 @@ def render_year_view(year):
     fig.update_yaxes(title_text="Debt ($B)", secondary_y=True, range=[0, 18])
     st.plotly_chart(fig, use_container_width=True)
 
-    opinion_history = [FINANCIAL_DATA[y]['opinion'] for y in range(2003, year+1)]
-    consecutive = 0
-    for op in reversed(opinion_history):
-        if op == opinion:
-            consecutive += 1
-        else:
-            break
-    start_year = year - consecutive + 1
-    col1, col2 = st.columns([2, 1])
-    with col1:
-        st.markdown(f"""
-        <div style="background:#f8f9fa;padding:12px 20px;border-radius:10px;border:1px solid #e0e0e0;height:100%;display:flex;align-items:center;justify-content:center;">
-            <span style="color:#666;font-size:0.9rem;">Current streak:</span>
-            <span style="font-weight:bold;font-size:1.1rem;color:{color};margin:0 6px;">{consecutive} consecutive {opinion} opinions</span>
-            <span style="color:#666;font-size:0.9rem;"> (since {start_year})</span>
-        </div>
-        """, unsafe_allow_html=True)
-    with col2:
-        clean_so_far = opinion_history.count('Clean')
-        disclaimer_so_far = opinion_history.count('Disclaimer')
-        adverse_so_far = opinion_history.count('Adverse')
-        pending_so_far = opinion_history.count('Pending')
-        st.markdown(f"""
-        <div style="background:#f8f9fa;padding:10px 16px;border-radius:10px;border:1px solid #e0e0e0;text-align:center;">
-            <div style="font-size:0.7rem;color:#888;">Cumulative Opinions</div>
-            <div style="display:flex;justify-content:center;gap:12px;margin-top:4px;">
-                <span><span style="color:#10B981;">●</span> {clean_so_far}</span>
-                <span><span style="color:#F59E0B;">●</span> {disclaimer_so_far}</span>
-                <span><span style="color:#DC2626;">●</span> {adverse_so_far}</span>
-                <span><span style="color:#8B5CF6;">●</span> {pending_so_far}</span>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-
     if st.button("📖 Back to The Full Story", use_container_width=True):
         st.session_state['view_mode'] = 'story'
         st.rerun()
 
 # ============================================================================
+# CREDITS SECTION
+# ============================================================================
+def render_credits():
+    st.markdown("""
+    <div class="credits-section">
+        <h4>📖 About This Dashboard & Book</h4>
+        <p style="color:#333; margin-bottom:8px;">
+            <strong>Author & Compiler:</strong> Matthew A. A. Blackman
+        </p>
+        <p style="color:#333; margin-bottom:8px;">
+            <strong>Proverbs:</strong> "De Mortar-Pestle: A Collection of Barbadian Proverbs" by G. Addinton Forde (1987)
+        </p>
+        <p style="color:#333; margin-bottom:8px;">
+            <strong>Data Source:</strong> Auditor General's Reports (2003-2024) | Office of the Auditor General, Barbados
+        </p>
+        <p style="color:#333; margin-bottom:8px;">
+            <strong>AI Assistance:</strong> DeepSeek — assisted with compilation, organization, and formatting
+        </p>
+        <p style="color:#333; margin-bottom:0;">
+            <strong>Dedication:</strong> To the people of Barbados — who deserve to know the truth about their country's finances,
+            who have a right to accountability, and who have the power to demand change.
+        </p>
+        <p style="color:#555; font-size:0.8rem; margin-top:10px; font-style:italic; border-top:1px solid #e0d6c8; padding-top:10px;">
+            <strong>Note:</strong> All proverbs used in this dashboard are drawn directly from "De Mortar-Pestle" by G. Addinton Forde (1987).
+            Each proverb is cited with its page number and includes an explanation of why it fits the specific chapter.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+# ============================================================================
 # DOWNLOAD FUNCTIONS
 # ============================================================================
 def render_download_section():
-    """Render the book download section in the sidebar."""
     st.markdown("---")
     st.markdown("### 📖 Download Options")
     
-    # Book Download
     st.markdown("""
     <div style="background:#f0f7ff; padding:12px 16px; border-radius:8px; border:1px solid #3B82F6; margin-bottom:10px;">
         <p style="margin:0; font-size:0.9rem; font-weight:600; color:#00267F;">📥 Download Complete Book</p>
@@ -1944,7 +1924,6 @@ def render_download_section():
     
     st.markdown("---")
     
-    # Data Download
     st.markdown("""
     <div style="background:#f0f7ff; padding:12px 16px; border-radius:8px; border:1px solid #3B82F6; margin-bottom:10px;">
         <p style="margin:0; font-size:0.9rem; font-weight:600; color:#00267F;">📊 Download Financial Data</p>
@@ -2004,6 +1983,7 @@ with st.sidebar:
         opinion = data['opinion']
         opinion_color = get_opinion_color(opinion)
         emoji = get_opinion_emoji(opinion)
+        proverb = PROVERBS.get(year, {"text": "", "meaning": "", "page": 0, "why": ""})
         
         st.markdown("### 📊 Quick Stats")
         st.markdown(f"""
@@ -2024,11 +2004,19 @@ with st.sidebar:
             <div style="font-size:1rem;font-weight:bold;color:{'#DC2626' if data['deficit'] < 0 else '#10B981'};">{format_currency_billions(abs(data['deficit']))}</div>
         </div>
         """, unsafe_allow_html=True)
+        st.markdown(f"""
+        <div style="background:#f8f9fa;padding:12px;border-radius:8px;margin-bottom:8px;">
+            <div style="font-size:0.7rem;color:#888;">Proverb</div>
+            <div style="font-size:0.85rem;font-style:italic;color:#00267F;">"{proverb['text']}"</div>
+        </div>
+        """, unsafe_allow_html=True)
         st.markdown("---")
         st.markdown(get_era_badge(year), unsafe_allow_html=True)
     
-    # Download section in sidebar
     render_download_section()
+    
+    st.markdown("---")
+    render_credits()
 
 # ============================================================================
 # MAIN CONTENT - ROUTING
@@ -2055,6 +2043,8 @@ pending_count = all_opinions.count('Pending')
 
 st.caption(f"""
 **Data Source:** Auditor General's Reports (2003-2024) • Financial Statements of the Government of Barbados
+**Proverbs:** "De Mortar-Pestle" by G. Addinton Forde (1987) — All proverbs used with attribution
+**Author & Compiler:** Matthew A. A. Blackman
 **Opinions:** Clean ({clean_count} years: 2003-2007) • Disclaimer ({disclaimer_count} years: 2008-2017) • Adverse ({adverse_count} years: 2018-2023) • Pending ({pending_count} years: 2024-2026)
 **Generated:** {datetime.now().strftime('%B %d, %Y %I:%M %p')}
 """)
