@@ -2,7 +2,7 @@
 # BARBADOS FINANCIAL ACCOUNTABILITY 2003-2026
 # COMPLETE YEAR-BY-YEAR EDITION WITH STORY ARC & BOOK DOWNLOAD
 # 
-# VERSION: 22.0 - ALL PROVERBS FROM "DE MORTAR-PESTLE" BY G. ADDINTON FORDE (1987)
+# VERSION: 23.0 - ENHANCED WITH KEY FIGURES, GROUNDHOG DAY TRACKER & MORE
 # DATE: July 2026
 #
 # All Bajan proverbs used in this dashboard are drawn directly from
@@ -927,6 +927,117 @@ def get_expenditure_breakdown(year):
         }
 
 # ============================================================================
+# GENERATE CHAPTER HTML FUNCTION
+# ============================================================================
+def generate_chapter_html(year):
+    """Generate HTML for a single chapter."""
+    data = FINANCIAL_DATA[year]
+    proverb = PROVERBS.get(year, {"text": "Wisdom comes from experience.", "meaning": "", "page": 0, "why": ""})
+    chapter = CHAPTER_TITLES.get(year, {"title": f"Year {year}", "tagline": ""})
+    context = YEAR_CONTEXT.get(year, "")
+    special = SPECIAL_AUDITS.get(year, {'audits': [], 'issues': []})
+    
+    opinion = data['opinion']
+    emoji = get_opinion_emoji(opinion)
+    opinion_class = "opinion-clean" if opinion == 'Clean' else "opinion-disclaimer" if opinion == 'Disclaimer' else "opinion-adverse" if opinion == 'Adverse' else "opinion-pending"
+    
+    html = f'''
+    <div class="chapter" id="ch{year}">
+        <div class="number">Chapter {year - 2002}</div>
+        <h3>{chapter['title']}</h3>
+        <div style="font-size:0.95rem; color:#666; margin-bottom:4px;">{year}</div>
+        <div class="proverb">"{proverb['text']}"</div>
+        <div class="proverb-meaning">{proverb['meaning']}</div>
+        <div style="font-size:0.7rem; color:#888; margin-bottom:8px;">Source: De Mortar-Pestle, p. {proverb['page']}</div>
+        <div style="font-size:0.85rem; color:#555; font-style:italic; margin-bottom:12px; background:#f8f5f0; padding:8px 12px; border-radius:6px; border-left:3px solid #FFC726;">
+            <strong>Why this proverb fits {year}:</strong> {proverb['why']}
+        </div>
+        
+        <div class="metric-grid">
+            <div class="metric-item"><div class="label">Revenue</div><div class="value">${data['revenue']:.3f}B</div></div>
+            <div class="metric-item"><div class="label">Expenditure</div><div class="value">${data['expenditure']:.3f}B</div></div>
+            <div class="metric-item"><div class="label">Deficit</div><div class="value" style="color:{'#10B981' if data['deficit'] >= 0 else '#DC2626'};">{data['deficit']:.3f}B</div></div>
+            <div class="metric-item"><div class="label">Debt</div><div class="value">${data['debt']:.3f}B</div></div>
+            <div class="metric-item"><div class="label">Opinion</div><div><span class="opinion-badge {opinion_class}">{emoji} {opinion}</span></div></div>
+        </div>
+        
+        <p>{context}</p>
+    '''
+    
+    # Add issues
+    if special.get('issues'):
+        html += '<div style="margin:8px 0;">'
+        for issue in special['issues']:
+            if 'ADVERSE' in issue.upper() or 'FIRST' in issue.upper() or 'CRISIS' in issue.upper():
+                html += f'''
+                <div class="issue-critical">
+                    <span style="color:#DC2626;font-weight:bold;">🔴 CRITICAL:</span> {issue}
+                </div>
+                '''
+            elif any(x in issue.lower() for x in ['unverified', 'discrepancy', 'not done', 'failure', 'crisis', 'hidden', 'unconfirmed']):
+                html += f'''
+                <div class="issue-warning">
+                    <span style="color:#D97706;font-weight:bold;">⚠️ WARNING:</span> {issue}
+                </div>
+                '''
+            else:
+                html += f'''
+                <div class="issue-info">
+                    <span style="color:#2563EB;font-weight:bold;">ℹ️ INFO:</span> {issue}
+                </div>
+                '''
+        html += '</div>'
+    
+    # Add special audits
+    if special.get('audits'):
+        html += '<div style="margin:8px 0;">'
+        for audit in special['audits']:
+            severity = audit.get('severity', 'Medium')
+            severity_class = "issue-critical" if severity == 'Critical' else "issue-warning" if severity == 'High' else "issue-info"
+            icon = '🔴' if severity == 'Critical' else '🟠' if severity == 'High' else 'ℹ️'
+            html += f'''
+            <div class="{severity_class}">
+                <strong>{icon} {audit['title']}</strong><br>
+                {audit['summary']}
+            </div>
+            '''
+        html += '</div>'
+    
+    # Add areas for consideration for 2025 and 2026
+    if year == 2025:
+        html += '''
+        <div style="background:#FFFBEB; padding:15px 20px; border-radius:10px; border:2px solid #F59E0B; margin:15px 0;">
+            <h4 style="color:#D97706; margin:0 0 8px 0;">📌 Areas for Consideration — Chapter 23 (2025)</h4>
+            <ul style="margin:8px 0 0 20px; color:#555;">
+                <li><strong>Consolidated Financial Statements:</strong> After 17 years of IPSAS adoption, the Government still cannot produce consolidated financial statements. The Treasury Department has acknowledged this issue on numerous occasions but has not presented the statements in the required form.</li>
+                <li><strong>Pension Liability:</strong> The hidden pension liability remains one of the most significant omissions from the Government's balance sheet. Under IPSAS 39, these liabilities should have been accrued starting in 2008.</li>
+                <li><strong>HOPE Inc's PV Model:</strong> Four years after inception, the photovoltaic revenue model at HOPE Inc's housing development is still not generating income.</li>
+                <li><strong>SOE Consolidation:</strong> The majority of State-Owned Enterprises remain unconsolidated. Without consolidation, the financial statements do not provide a comprehensive view of Government's financial position.</li>
+            </ul>
+        </div>
+        '''
+    
+    if year == 2026:
+        html += '''
+        <div style="background:#FFFBEB; padding:15px 20px; border-radius:10px; border:2px solid #F59E0B; margin:15px 0;">
+            <h4 style="color:#D97706; margin:0 0 8px 0;">📌 Areas for Consideration — Chapter 24 (2026)</h4>
+            <ul style="margin:8px 0 0 20px; color:#555;">
+                <li><strong>Constitutional Reform is Necessary but Not Sufficient:</strong> The Constitutional Review Commission has recommended greater control over staffing and indemnification for the Auditor General. However, reform alone will not fix the problem — implementation and political will are essential.</li>
+                <li><strong>The Pattern of Unresolved Issues:</strong> The "Groundhog Day" tracker shows that issues such as SOE consolidation, asset registers, bank reconciliations, pension liability, and tax receivables have remained unresolved for 15-20 years.</li>
+                <li><strong>Staffing Shortages:</strong> The Auditor General has consistently recommended greater autonomy in recruitment. The Office remains "severely depleted in terms of manpower."</li>
+                <li><strong>A Cautious Outlook:</strong> Barbados can either embrace reform and fix the foundation, or continue the same pattern of acknowledgment without action.</li>
+            </ul>
+        </div>
+        <div style="background:#FEF2F2; padding:12px 16px; border-radius:8px; border-left:4px solid #DC2626; margin:10px 0;">
+            <strong style="color:#DC2626;">⚠️ Critical Observation:</strong>
+            <span style="color:#666;">Constitutional reform is on the table as a necessary, but not sufficient, condition for change. Without the political will to address the systemic issues, reform will be meaningless.</span>
+        </div>
+        '''
+    
+    html += '</div>'
+    return html
+
+# ============================================================================
 # BOOK GENERATOR FUNCTION
 # ============================================================================
 def generate_book_html():
@@ -935,12 +1046,12 @@ def generate_book_html():
     book_content = []
     
     # Cover
-    book_content.append(f'''
+    book_content.append('''
     <div class="cover">
         <div style="font-size:2.5rem; letter-spacing:8px;">🇧🇧</div>
         <h1>HOW DID WE <span class="highlight">GET HERE</span>?</h1>
         <div class="flag-bar"></div>
-        <div class="subtitle">Barbados' 20-Year Journey from Clean Opinions to Financial Crisis</div>
+        <div class="subtitle">Barbados' 24-Year Journey from Clean Opinions to Financial Crisis</div>
         <div class="byline">A Story of Accountability, Failure, and the Path Forward</div>
         <div class="years">2003 — 2026</div>
         <div style="margin-top:20px; font-size:0.9rem; color:#888;">
@@ -952,6 +1063,278 @@ def generate_book_html():
     </div>
     ''')
     
+    # Key Figures Dashboard
+    book_content.append('''
+    <div style="margin:30px 0 40px;">
+        <h2 style="color:#00267F; font-size:2rem; border-bottom:2px solid #FFC726; padding-bottom:6px;">📊 Key Figures at a Glance</h2>
+        <p style="color:#555; margin-top:6px;">The numbers that tell the story of Barbados' financial accountability crisis.</p>
+
+        <div class="key-figures-grid">
+            <div class="key-figure-card" style="border-left-color: #DC2626;">
+                <div class="key-figure-number" style="color: #DC2626;">$9.86B</div>
+                <div class="key-figure-label">Total Deficits Accumulated (2003-2023)</div>
+                <div class="key-figure-context">Barbados has run deficits in 22 of 24 years</div>
+            </div>
+            <div class="key-figure-card" style="border-left-color: #DC2626;">
+                <div class="key-figure-number" style="color: #DC2626;">$10.01B</div>
+                <div class="key-figure-label">Debt Increase (2003-2023)</div>
+                <div class="key-figure-context">From $3.98B to $13.99B — +251.8%</div>
+            </div>
+            <div class="key-figure-card" style="border-left-color: #DC2626;">
+                <div class="key-figure-number" style="color: #DC2626;">$2.43B</div>
+                <div class="key-figure-label">Unconfirmed Tax Receivables (2023)</div>
+                <div class="key-figure-context">Could not be verified due to insufficient documentation</div>
+            </div>
+            <div class="key-figure-card" style="border-left-color: #F59E0B;">
+                <div class="key-figure-number" style="color: #F59E0B;">$719M</div>
+                <div class="key-figure-label">Asset Discrepancy (2023)</div>
+                <div class="key-figure-context">Difference between financial statements and subsidiary records</div>
+            </div>
+            <div class="key-figure-card" style="border-left-color: #DC2626;">
+                <div class="key-figure-number" style="color: #DC2626;">$4.3B+</div>
+                <div class="key-figure-label">Hidden Pension Liability</div>
+                <div class="key-figure-context">Not disclosed in financial statements since 2008</div>
+            </div>
+            <div class="key-figure-card" style="border-left-color: #DC2626;">
+                <div class="key-figure-number" style="color: #DC2626;">16</div>
+                <div class="key-figure-label">Years Since Last Clean Opinion</div>
+                <div class="key-figure-context">Last clean opinion was in 2007</div>
+            </div>
+            <div class="key-figure-card" style="border-left-color: #10B981;">
+                <div class="key-figure-number" style="color: #10B981;">5</div>
+                <div class="key-figure-label">Clean Opinions (2003-2007)</div>
+                <div class="key-figure-context">All before the financial crisis</div>
+            </div>
+            <div class="key-figure-card" style="border-left-color: #DC2626;">
+                <div class="key-figure-number" style="color: #DC2626;">6</div>
+                <div class="key-figure-label">Adverse Opinions (2018-2023)</div>
+                <div class="key-figure-context">Consecutive adverse opinions since 2018</div>
+            </div>
+        </div>
+    </div>
+    ''')
+    
+    # Auditor General's Quote
+    book_content.append('''
+    <div class="ag-quote">
+        <div class="quote-text">
+            "An effective audit office, in my view, is fundamental to the functioning of our democracy. It provides the necessary checks and balances to ensure public funds are utilized efficiently and effectively, and to allow those responsible for loss or wastage to be held accountable."
+        </div>
+        <div class="quote-attribution">— Leigh E. Trotman, CPA</div>
+        <div class="quote-source">Auditor General of Barbados, Report 2024, Page 6</div>
+        <div style="margin-top:12px; color:#BFDBFE; font-size:0.9rem; border-top:1px solid #1E40AF; padding-top:12px;">
+            <strong>From the same report:</strong> "I leave behind an Office which is severely depleted in terms of manpower and this should be urgently addressed... For improvement to be made within the Office, there is a requirement for sufficient skilled workers dedicated to their tasks."
+        </div>
+    </div>
+    ''')
+    
+    # Groundhog Day Tracker
+    book_content.append('''
+    <div style="margin:30px 0 40px;">
+        <h2 style="color:#00267F; font-size:2rem; border-bottom:2px solid #FFC726; padding-bottom:6px;">🔁 The 'Groundhog Day' Tracker</h2>
+        <p style="color:#555; margin-top:6px;">Issues that have persisted for 15-20 years without resolution — the same problems, year after year.</p>
+
+        <div class="issue-tracker-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+                <div><strong>SOE Consolidation not done</strong></div>
+                <div>
+                    <span class="issue-tracker-years">2008 → 2023</span>
+                    <span style="margin:0 8px;">|</span>
+                    <span class="issue-tracker-status">❌ Unresolved</span>
+                    <span style="margin:0 8px;">|</span>
+                    <span style="color:#666; font-size:0.85rem;">$1.4B+ in SOE liabilities not consolidated</span>
+                </div>
+            </div>
+            <div class="tracker-bar"><div class="tracker-bar-fill" style="width:63%;"></div></div>
+            <div style="font-size:0.75rem; color:#888; margin-top:2px;">15 years unresolved</div>
+        </div>
+
+        <div class="issue-tracker-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+                <div><strong>Asset Registers deficient</strong></div>
+                <div>
+                    <span class="issue-tracker-years">2003 → 2023</span>
+                    <span style="margin:0 8px;">|</span>
+                    <span class="issue-tracker-status">❌ Unresolved</span>
+                    <span style="margin:0 8px;">|</span>
+                    <span style="color:#666; font-size:0.85rem;">$719M asset discrepancy</span>
+                </div>
+            </div>
+            <div class="tracker-bar"><div class="tracker-bar-fill" style="width:83%;"></div></div>
+            <div style="font-size:0.75rem; color:#888; margin-top:2px;">20 years unresolved</div>
+        </div>
+
+        <div class="issue-tracker-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+                <div><strong>Bank Reconciliations not done</strong></div>
+                <div>
+                    <span class="issue-tracker-years">2004 → 2023</span>
+                    <span style="margin:0 8px;">|</span>
+                    <span class="issue-tracker-status">❌ Unresolved</span>
+                    <span style="margin:0 8px;">|</span>
+                    <span style="color:#666; font-size:0.85rem;">Cash overstatements identified</span>
+                </div>
+            </div>
+            <div class="tracker-bar"><div class="tracker-bar-fill" style="width:79%;"></div></div>
+            <div style="font-size:0.75rem; color:#888; margin-top:2px;">19 years unresolved</div>
+        </div>
+
+        <div class="issue-tracker-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+                <div><strong>Pension Liability hidden</strong></div>
+                <div>
+                    <span class="issue-tracker-years">2008 → 2023</span>
+                    <span style="margin:0 8px;">|</span>
+                    <span class="issue-tracker-status">❌ Unresolved</span>
+                    <span style="margin:0 8px;">|</span>
+                    <span style="color:#666; font-size:0.85rem;">$4.3B+ liability not disclosed</span>
+                </div>
+            </div>
+            <div class="tracker-bar"><div class="tracker-bar-fill" style="width:63%;"></div></div>
+            <div style="font-size:0.75rem; color:#888; margin-top:2px;">15 years unresolved</div>
+        </div>
+
+        <div class="issue-tracker-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+                <div><strong>Tax Receivables unverified</strong></div>
+                <div>
+                    <span class="issue-tracker-years">2008 → 2023</span>
+                    <span style="margin:0 8px;">|</span>
+                    <span class="issue-tracker-status">❌ Unresolved</span>
+                    <span style="margin:0 8px;">|</span>
+                    <span style="color:#666; font-size:0.85rem;">$2.43B tax receivables unconfirmed</span>
+                </div>
+            </div>
+            <div class="tracker-bar"><div class="tracker-bar-fill" style="width:63%;"></div></div>
+            <div style="font-size:0.75rem; color:#888; margin-top:2px;">15 years unresolved</div>
+        </div>
+
+        <div class="issue-tracker-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+                <div><strong>Staff shortages at Audit Office</strong></div>
+                <div>
+                    <span class="issue-tracker-years">2006 → 2023</span>
+                    <span style="margin:0 8px;">|</span>
+                    <span class="issue-tracker-status">❌ Unresolved</span>
+                    <span style="margin:0 8px;">|</span>
+                    <span style="color:#666; font-size:0.85rem;">Late report submission</span>
+                </div>
+            </div>
+            <div class="tracker-bar"><div class="tracker-bar-fill" style="width:71%;"></div></div>
+            <div style="font-size:0.75rem; color:#888; margin-top:2px;">17 years unresolved</div>
+        </div>
+    </div>
+    ''')
+    
+    # Audit Opinion Timeline
+    book_content.append('''
+    <div style="margin:30px 0 40px;">
+        <h2 style="color:#00267F; font-size:2rem; border-bottom:2px solid #FFC726; padding-bottom:6px;">🏛️ Audit Opinion Timeline (2003-2026)</h2>
+        <p style="color:#555; margin-top:6px;">A visual history of Barbados' audit opinions — from clean to crisis.</p>
+
+        <div class="opinion-timeline">
+            <span style="font-size:0.7rem; color:#888; margin-right:4px;">2003</span>
+            <span class="opinion-dot opinion-dot-clean" title="2003: Clean"></span>
+            <span class="opinion-dot opinion-dot-clean" title="2004: Clean"></span>
+            <span class="opinion-dot opinion-dot-clean" title="2005: Clean"></span>
+            <span class="opinion-dot opinion-dot-clean" title="2006: Clean"></span>
+            <span class="opinion-dot opinion-dot-clean" title="2007: Clean"></span>
+            <span style="margin:0 2px; color:#ccc;">|</span>
+            <span class="opinion-dot opinion-dot-disclaimer" title="2008: Disclaimer"></span>
+            <span class="opinion-dot opinion-dot-disclaimer" title="2009: Disclaimer"></span>
+            <span class="opinion-dot opinion-dot-disclaimer" title="2010: Disclaimer"></span>
+            <span class="opinion-dot opinion-dot-disclaimer" title="2011: Disclaimer"></span>
+            <span class="opinion-dot opinion-dot-disclaimer" title="2012: Disclaimer"></span>
+            <span class="opinion-dot opinion-dot-disclaimer" title="2013: Disclaimer"></span>
+            <span class="opinion-dot opinion-dot-disclaimer" title="2014: Disclaimer"></span>
+            <span class="opinion-dot opinion-dot-disclaimer" title="2015: Disclaimer"></span>
+            <span class="opinion-dot opinion-dot-disclaimer" title="2016: Disclaimer"></span>
+            <span class="opinion-dot opinion-dot-disclaimer" title="2017: Disclaimer"></span>
+            <span style="margin:0 2px; color:#ccc;">|</span>
+            <span class="opinion-dot opinion-dot-adverse" title="2018: Adverse"></span>
+            <span class="opinion-dot opinion-dot-adverse" title="2019: Adverse"></span>
+            <span class="opinion-dot opinion-dot-adverse" title="2020: Adverse"></span>
+            <span class="opinion-dot opinion-dot-adverse" title="2021: Adverse"></span>
+            <span class="opinion-dot opinion-dot-adverse" title="2022: Adverse"></span>
+            <span class="opinion-dot opinion-dot-adverse" title="2023: Adverse"></span>
+            <span style="margin:0 2px; color:#ccc;">|</span>
+            <span class="opinion-dot opinion-dot-pending" title="2024: Pending"></span>
+            <span class="opinion-dot opinion-dot-pending" title="2025: Pending"></span>
+            <span class="opinion-dot opinion-dot-pending" title="2026: Pending"></span>
+            <span style="font-size:0.7rem; color:#888; margin-left:4px;">2026</span>
+        </div>
+        <div style="display:flex; gap:20px; flex-wrap:wrap; font-size:0.8rem; color:#666;">
+            <span><span class="opinion-dot opinion-dot-clean" style="display:inline-block; width:14px; height:14px; vertical-align:middle;"></span> Clean (5 yrs)</span>
+            <span><span class="opinion-dot opinion-dot-disclaimer" style="display:inline-block; width:14px; height:14px; vertical-align:middle;"></span> Disclaimer (10 yrs)</span>
+            <span><span class="opinion-dot opinion-dot-adverse" style="display:inline-block; width:14px; height:14px; vertical-align:middle;"></span> Adverse (6 yrs)</span>
+            <span><span class="opinion-dot opinion-dot-pending" style="display:inline-block; width:14px; height:14px; vertical-align:middle;"></span> Pending (3 yrs)</span>
+        </div>
+    </div>
+    ''')
+    
+    # Table of Contents
+    book_content.append('''
+    <div style="margin:30px 0 40px;">
+        <h2 style="color:#00267F; font-size:2rem; border-bottom:2px solid #FFC726; padding-bottom:6px;">📖 Table of Contents</h2>
+
+        <div class="act-header act-clean">
+            <div class="act-title" style="color:#10B981;">🟢 ACT I: THE GOLDEN YEARS</div>
+            <div class="act-subtitle">5 clean opinions. Barbados had it right.</div>
+            <div class="act-count">2003 — 2007 (5 years)</div>
+        </div>
+        <ul style="list-style:none; padding-left:10px; margin-bottom:20px;">
+            <li>• Chapter 1 (2003) — The Foundation</li>
+            <li>• Chapter 2 (2004) — Building Momentum</li>
+            <li>• Chapter 3 (2005) — Warning Signs</li>
+            <li>• Chapter 4 (2006) — First Cracks</li>
+            <li>• Chapter 5 (2007) — The Last Clean Year</li>
+        </ul>
+
+        <div class="act-header act-disclaimer">
+            <div class="act-title" style="color:#F59E0B;">🟡 ACT II: THE SLOW DECLINE</div>
+            <div class="act-subtitle">10 disclaimer opinions. The same problems, year after year.</div>
+            <div class="act-count">2008 — 2017 (10 years)</div>
+        </div>
+        <ul style="list-style:none; padding-left:10px; margin-bottom:20px;">
+            <li>• Chapter 6 (2008) — The Turning Point</li>
+            <li>• Chapter 7 (2009) — The Housing Crisis</li>
+            <li>• Chapter 8 (2010) — The Embassy Scandal</li>
+            <li>• Chapter 9 (2011) — Performance Audits Begin</li>
+            <li>• Chapter 10 (2012) — The BWA Scandal</li>
+            <li>• Chapter 11 (2013) — Land & Squatting Crisis</li>
+            <li>• Chapter 12 (2014) — Tax Crisis Deepens</li>
+            <li>• Chapter 13 (2015) — The Quiet Year</li>
+            <li>• Chapter 14 (2016) — The High Rise Disaster</li>
+            <li>• Chapter 15 (2017) — The Last Warning</li>
+        </ul>
+
+        <div class="act-header act-adverse">
+            <div class="act-title" style="color:#DC2626;">🔴 ACT III: THE BREAKING POINT</div>
+            <div class="act-subtitle">6 adverse opinions. The system broke.</div>
+            <div class="act-count">2018 — 2023 (6 years)</div>
+        </div>
+        <ul style="list-style:none; padding-left:10px; margin-bottom:20px;">
+            <li>• Chapter 16 (2018) — FIRST ADVERSE OPINION</li>
+            <li>• Chapter 17 (2019) — The Smart Meter Scandal</li>
+            <li>• Chapter 18 (2020) — COVID & Missing Assets</li>
+            <li>• Chapter 19 (2021) — The Peak of Deficit</li>
+            <li>• Chapter 20 (2022) — The $2.61B Question</li>
+            <li>• Chapter 21 (2023) — THE CRISIS DEEPENS</li>
+        </ul>
+
+        <div class="act-header act-pending">
+            <div class="act-title" style="color:#8B5CF6;">🟣 EPILOGUE: THE PATH FORWARD</div>
+            <div class="act-subtitle">3 pending years. Will they fix it?</div>
+            <div class="act-count">2024 — 2026 (3 years)</div>
+        </div>
+        <ul style="list-style:none; padding-left:10px; margin-bottom:10px;">
+            <li>• Chapter 22 (2024) — Technology Failures</li>
+            <li>• Chapter 23 (2025) — Still Waiting</li>
+            <li>• Chapter 24 (2026) — Constitutional Reform</li>
+        </ul>
+    </div>
+    ''')
+    
     # Preface
     book_content.append('''
     <div style="margin:30px 0 40px;">
@@ -960,7 +1343,7 @@ def generate_book_html():
             Every Barbadian has a right to know the state of their country's finances.
         </p>
         <p style="margin-top:10px;">
-            For 20 years, the Auditor General has been telling Parliament and the public the same story:
+            For 24 years, the Auditor General has been telling Parliament and the public the same story:
         </p>
         <ul style="margin:10px 0 10px 30px;">
             <li>Asset registers are deficient</li>
@@ -985,55 +1368,55 @@ def generate_book_html():
     </div>
     ''')
     
-    # Generate chapters
-    for year in range(2003, 2027):
-        data = FINANCIAL_DATA[year]
-        proverb = PROVERBS.get(year, {"text": "", "meaning": "", "page": 0, "why": ""})
-        chapter = CHAPTER_TITLES.get(year, {"title": f"Year {year}", "tagline": ""})
-        context = YEAR_CONTEXT.get(year, "")
-        special = SPECIAL_AUDITS.get(year, {'audits': [], 'issues': []})
-        
-        opinion_color = "opinion-clean" if data['opinion'] == 'Clean' else "opinion-disclaimer" if data['opinion'] == 'Disclaimer' else "opinion-adverse"
-        opinion_emoji = "✅" if data['opinion'] == 'Clean' else "⚠️" if data['opinion'] == 'Disclaimer' else "❌"
-        
-        book_content.append(f'''
-        <div class="chapter">
-            <div class="number">Chapter {year - 2002}</div>
-            <h3>{chapter['title']}</h3>
-            <div style="font-size:0.95rem; color:#666; margin-bottom:4px;">{year}</div>
-            <div class="proverb">"{proverb['text']}"</div>
-            <div class="proverb-meaning">{proverb['meaning']}</div>
-            <div style="font-size:0.7rem; color:#888; margin-bottom:8px;">Source: De Mortar-Pestle, p. {proverb['page']}</div>
-            <div style="font-size:0.85rem; color:#555; font-style:italic; margin-bottom:12px; background:#f8f5f0; padding:8px 12px; border-radius:6px; border-left:3px solid #FFC726;">
-                <strong>Why this proverb fits {year}:</strong> {proverb['why']}
-            </div>
-            <div class="metric-grid">
-                <div class="metric-item"><div class="label">Revenue</div><div class="value">${data['revenue']:.3f}B</div></div>
-                <div class="metric-item"><div class="label">Expenditure</div><div class="value">${data['expenditure']:.3f}B</div></div>
-                <div class="metric-item"><div class="label">Deficit</div><div class="value" style="color:{'#10B981' if data['deficit'] >= 0 else '#DC2626'};">{data['deficit']:.3f}B</div></div>
-                <div class="metric-item"><div class="label">Debt</div><div class="value">${data['debt']:.3f}B</div></div>
-                <div class="metric-item"><div class="label">Opinion</div><div><span class="opinion-badge {opinion_color}">{opinion_emoji} {data['opinion']}</span></div></div>
-            </div>
-            <p>{context}</p>
-        </div>
-        ''')
-        
-        if special.get('audits'):
-            book_content.append('<div style="margin:8px 0;">')
-            for audit in special['audits']:
-                severity_class = "issue-critical" if audit.get('severity') == 'Critical' else "issue-warning" if audit.get('severity') == 'High' else "issue-info"
-                icon = '🔴' if audit.get('severity') == 'Critical' else '🟠' if audit.get('severity') == 'High' else 'ℹ️'
-                book_content.append(f'''
-                <div class="{severity_class}">
-                    <strong>{icon} {audit['title']}</strong><br>
-                    {audit['summary']}
-                </div>
-                ''')
-            book_content.append('</div>')
+    # ACT I: THE GOLDEN YEARS
+    book_content.append('''
+    <div class="act-header act-clean" style="margin-top:40px;">
+        <div class="act-title" style="color:#10B981;">🟢 ACT I: THE GOLDEN YEARS</div>
+        <div class="act-subtitle">5 clean opinions. Barbados had it right.</div>
+        <div class="act-count">2003 — 2007</div>
+    </div>
+    ''')
     
-    # ========================================================================
-    # CONCLUSION SECTION WITH SOLUTION PROVERBS
-    # ========================================================================
+    for year in range(2003, 2008):
+        book_content.append(generate_chapter_html(year))
+    
+    # ACT II: THE SLOW DECLINE
+    book_content.append('''
+    <div class="act-header act-disclaimer" style="margin-top:40px;">
+        <div class="act-title" style="color:#F59E0B;">🟡 ACT II: THE SLOW DECLINE</div>
+        <div class="act-subtitle">10 disclaimer opinions. The same problems, year after year.</div>
+        <div class="act-count">2008 — 2017</div>
+    </div>
+    ''')
+    
+    for year in range(2008, 2018):
+        book_content.append(generate_chapter_html(year))
+    
+    # ACT III: THE BREAKING POINT
+    book_content.append('''
+    <div class="act-header act-adverse" style="margin-top:40px;">
+        <div class="act-title" style="color:#DC2626;">🔴 ACT III: THE BREAKING POINT</div>
+        <div class="act-subtitle">6 adverse opinions. The system broke.</div>
+        <div class="act-count">2018 — 2023</div>
+    </div>
+    ''')
+    
+    for year in range(2018, 2024):
+        book_content.append(generate_chapter_html(year))
+    
+    # EPILOGUE: THE PATH FORWARD
+    book_content.append('''
+    <div class="act-header act-pending" style="margin-top:40px;">
+        <div class="act-title" style="color:#8B5CF6;">🟣 EPILOGUE: THE PATH FORWARD</div>
+        <div class="act-subtitle">3 pending years. Will they fix it?</div>
+        <div class="act-count">2024 — 2026</div>
+    </div>
+    ''')
+    
+    for year in range(2024, 2027):
+        book_content.append(generate_chapter_html(year))
+    
+    # CONCLUSION WITH SOLUTION PROVERBS
     book_content.append('''
     <div style="margin:50px 0 30px;">
         <h2 style="color:#00267F; font-size:2.2rem; border-bottom:3px solid #FFC726; padding-bottom:6px;">Conclusion: The Path Forward</h2>
@@ -1046,7 +1429,7 @@ def generate_book_html():
                 The question is: "What are we going to do about it?"
             </p>
             <p style="margin-top:12px; color:#f0f0f0;">
-                The Auditor General has done his job. For 20 years, he has flagged the same issues. 
+                The Auditor General has done his job. For over 20 years, he has flagged the same issues. 
                 The government has acknowledged them but has not fixed them.
             </p>
             <p style="color:#f0f0f0;">
@@ -1077,11 +1460,9 @@ def generate_book_html():
         </div>
         ''')
     
-    book_content.append('''
-    </div>
-    ''')
+    book_content.append('</div>')
     
-    # Appendices
+    # APPENDICES
     book_content.append('''
     <div style="margin:50px 0 30px;">
         <h2 style="color:#00267F; font-size:2.2rem; border-bottom:3px solid #FFC726; padding-bottom:6px;">Appendices</h2>
@@ -1108,7 +1489,7 @@ def generate_book_html():
     </div>
     ''')
     
-    # Appendix B - All Proverbs with Why They Fit
+    # Appendix B - All Proverbs
     book_content.append('''
     <div style="margin:30px 0;">
         <h3 style="color:#00267F; font-size:1.5rem;">Appendix B: Bajan Proverbs from "De Mortar-Pestle"</h3>
@@ -1168,14 +1549,14 @@ def generate_book_html():
     <div style="margin:30px 0;">
         <h3 style="color:#00267F; font-size:1.5rem;">Appendix D: Repeating Issues Tracker</h3>
         <table>
-            <thead><tr><th>Issue</th><th>First Flagged</th><th>Last Flagged</th><th>Years</th><th>Status</th></tr></thead>
+            <thead><tr><th>Issue</th><th>First Flagged</th><th>Last Flagged</th><th>Years</th><th>Status</th><th>Impact</th></tr></thead>
             <tbody>
-                <tr><td>SOE Consolidation not done</td><td>2008</td><td>2023</td><td>15 years</td><td style="color:#DC2626;">❌ Unresolved</td></tr>
-                <tr><td>Asset Registers deficient</td><td>2003</td><td>2023</td><td>20 years</td><td style="color:#DC2626;">❌ Unresolved</td></tr>
-                <tr><td>Bank Reconciliations not done</td><td>2004</td><td>2023</td><td>19 years</td><td style="color:#DC2626;">❌ Unresolved</td></tr>
-                <tr><td>Pension Liability hidden</td><td>2008</td><td>2023</td><td>15 years</td><td style="color:#DC2626;">❌ Unresolved</td></tr>
-                <tr><td>Tax Receivables unverified</td><td>2008</td><td>2023</td><td>15 years</td><td style="color:#DC2626;">❌ Unresolved</td></tr>
-                <tr><td>Staff shortages at Audit Office</td><td>2006</td><td>2023</td><td>17 years</td><td style="color:#DC2626;">❌ Unresolved</td></tr>
+                <tr><td>SOE Consolidation not done</td><td>2008</td><td>2023</td><td>15 years</td><td style="color:#DC2626;">❌ Unresolved</td><td>$1.4B+ in SOE liabilities not consolidated</td></tr>
+                <tr><td>Asset Registers deficient</td><td>2003</td><td>2023</td><td>20 years</td><td style="color:#DC2626;">❌ Unresolved</td><td>$719M asset discrepancy</td></tr>
+                <tr><td>Bank Reconciliations not done</td><td>2004</td><td>2023</td><td>19 years</td><td style="color:#DC2626;">❌ Unresolved</td><td>Cash overstatements identified</td></tr>
+                <tr><td>Pension Liability hidden</td><td>2008</td><td>2023</td><td>15 years</td><td style="color:#DC2626;">❌ Unresolved</td><td>$4.3B+ liability not disclosed</td></tr>
+                <tr><td>Tax Receivables unverified</td><td>2008</td><td>2023</td><td>15 years</td><td style="color:#DC2626;">❌ Unresolved</td><td>$2.43B tax receivables unconfirmed</td></tr>
+                <tr><td>Staff shortages at Audit Office</td><td>2006</td><td>2023</td><td>17 years</td><td style="color:#DC2626;">❌ Unresolved</td><td>Late report submission</td></tr>
             </tbody>
         </table>
     </div>
@@ -1190,7 +1571,7 @@ def generate_book_html():
             <h4 style="color:#00267F; margin-bottom:8px;">📖 Author & Compiler</h4>
             <p style="font-weight:700; color:#00267F; font-size:1.1rem;">Matthew A. A. Blackman</p>
             <p style="color:#333;">
-                This dashboard and book were researched, compiled, and written by Matthew A. A. Blackman.
+                This book was researched, compiled, and written by Matthew A. A. Blackman.
                 The author spent countless hours analyzing 24 years of Auditor General's reports,
                 financial statements, and government documents to piece together the complete
                 story of Barbados' financial accountability journey.
@@ -1222,17 +1603,23 @@ def generate_book_html():
             <h4 style="color:#00267F; margin-bottom:8px;">🏛️ The Auditor General</h4>
             <p style="font-weight:700; color:#00267F;">Leigh E. Trotman, CPA</p>
             <p style="color:#333;">Auditor General of Barbados (2006-2026)</p>
+            <p style="color:#555; font-style:italic; margin-top:8px;">
+                "An effective audit office, in my view, is fundamental to the functioning of our democracy.
+                It provides the necessary checks and balances to ensure public funds are utilized efficiently and effectively,
+                and to allow those responsible for loss or wastage to be held accountable."
+            </p>
+            <p style="color:#888; font-size:0.8rem; margin-top:4px;">— Auditor General's Report 2024, page 6</p>
         </div>
         
         <div style="background:#f8f5f0; padding:20px 24px; border-radius:10px; border:2px solid #8B5CF6; margin:20px 0;">
             <h4 style="color:#00267F; margin-bottom:8px;">🤖 AI Assistance</h4>
             <p style="font-weight:700; color:#00267F;">DeepSeek</p>
             <p style="color:#333;">
-                The compilation, organization, and formatting of this dashboard and book were assisted by DeepSeek.
+                The compilation, organization, and formatting of this book were assisted by DeepSeek.
             </p>
             <p style="color:#555; font-size:0.9rem; margin-top:8px;">
                 <strong>Disclaimer:</strong> While AI assisted in compilation and formatting, all data comes from 
-                official government sources.
+                official government sources — the Auditor General's Reports and Government Financial Statements.
             </p>
         </div>
         
@@ -1251,13 +1638,17 @@ def generate_book_html():
     <div class="footer">
         <div style="font-size:2rem; margin-bottom:8px;">🇧🇧</div>
         <p><strong>How Did We Get Here?</strong></p>
-        <p>Barbados' 20-Year Journey from Clean Opinions to Financial Crisis</p>
+        <p>Barbados' 24-Year Journey from Clean Opinions to Financial Crisis</p>
         <p style="margin-top:8px;">Based on 24 Years of Auditor General's Reports (2003-2026)</p>
         <p style="margin-top:8px; font-size:0.8rem;">
             Author: Matthew A. A. Blackman &nbsp;|&nbsp; Proverbs: G. Addinton Forde, "De Mortar-Pestle" (1987)
         </p>
+        <p style="margin-top:8px; font-size:0.8rem;">
+            With special thanks to <strong>Leigh E. Trotman, CPA</strong> — Auditor General of Barbados (2006-2026)
+        </p>
         <p style="margin-top:8px; font-size:0.7rem; color:#aaa;">
-            "Don' wait till de horse get out to shut de stable door." — Bajan Proverb, De Mortar-Pestle, p. 3
+            "An effective audit office, in my view, is fundamental to the functioning of our democracy."<br>
+            — Leigh E. Trotman, CPA, Auditor General's Report 2024
         </p>
         <p style="margin-top:4px; font-size:0.7rem; color:#aaa; font-style:italic;">
             Dedicated to the people of Barbados — who deserve accountability.
@@ -1265,7 +1656,7 @@ def generate_book_html():
     </div>
     ''')
     
-    # Wrap in full HTML
+    # Wrap in full HTML with enhanced CSS
     full_html = f'''
     <!DOCTYPE html>
     <html lang="en">
@@ -1283,7 +1674,7 @@ def generate_book_html():
                 padding: 0;
             }}
             .container {{
-                max-width: 900px;
+                max-width: 1000px;
                 margin: 0 auto;
                 padding: 40px 30px 60px;
                 background: #fffcf7;
@@ -1399,6 +1790,7 @@ def generate_book_html():
             .opinion-clean {{ background: #D1FAE5; color: #065F46; }}
             .opinion-disclaimer {{ background: #FEF3C7; color: #92400E; }}
             .opinion-adverse {{ background: #FEE2E2; color: #991B1B; }}
+            .opinion-pending {{ background: #EDE9FE; color: #5B21B6; }}
             .issue-critical {{
                 background: #FEF2F2;
                 padding: 10px 16px;
@@ -1448,10 +1840,120 @@ def generate_book_html():
                 font-size: 0.85rem;
                 color: #888;
             }}
+            .act-header {{
+                padding: 15px 20px;
+                border-radius: 10px;
+                margin: 25px 0 15px 0;
+                text-align: center;
+            }}
+            .act-clean {{ background: #ECFDF5; border: 2px solid #10B981; }}
+            .act-disclaimer {{ background: #FFFBEB; border: 2px solid #F59E0B; }}
+            .act-adverse {{ background: #FEF2F2; border: 2px solid #DC2626; }}
+            .act-pending {{ background: #EDE9FE; border: 2px solid #8B5CF6; }}
+            .act-title {{ font-size: 1.6rem; font-weight: 700; }}
+            .act-subtitle {{ font-size: 1.1rem; }}
+            .act-count {{ font-size: 0.9rem; font-weight: 600; }}
+            .key-figures-grid {{
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 16px;
+                margin: 16px 0 24px;
+            }}
+            .key-figure-card {{
+                background: #ffffff;
+                border: 1px solid #e0e0e0;
+                border-radius: 10px;
+                padding: 16px 20px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+                border-left: 4px solid #00267F;
+            }}
+            .key-figure-number {{
+                font-size: 2.2rem;
+                font-weight: 700;
+                color: #00267F;
+            }}
+            .key-figure-label {{
+                font-size: 0.9rem;
+                color: #666;
+            }}
+            .key-figure-context {{
+                font-size: 0.8rem;
+                color: #888;
+                margin-top: 4px;
+            }}
+            .issue-tracker-card {{
+                background: #ffffff;
+                border: 1px solid #e0e0e0;
+                border-radius: 10px;
+                padding: 12px 16px;
+                margin-bottom: 8px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            }}
+            .issue-tracker-years {{
+                font-weight: 600;
+                color: #DC2626;
+            }}
+            .issue-tracker-status {{
+                font-weight: 600;
+                color: #DC2626;
+            }}
+            .tracker-bar {{
+                margin-top: 6px;
+                background: #f0f0f0;
+                border-radius: 4px;
+                height: 8px;
+                width: 100%;
+            }}
+            .tracker-bar-fill {{
+                background: #DC2626;
+                height: 8px;
+                border-radius: 4px;
+            }}
+            .ag-quote {{
+                background: #00267F;
+                color: white;
+                padding: 30px 35px;
+                border-radius: 12px;
+                margin: 25px 0;
+                border-left: 6px solid #FFC726;
+            }}
+            .ag-quote .quote-text {{
+                font-size: 1.3rem;
+                font-style: italic;
+                color: #BFDBFE;
+                line-height: 1.6;
+            }}
+            .ag-quote .quote-attribution {{
+                color: #FFC726;
+                font-weight: 600;
+                margin-top: 10px;
+                font-size: 1.05rem;
+            }}
+            .ag-quote .quote-source {{
+                color: #93C5FD;
+                font-size: 0.85rem;
+            }}
+            .opinion-timeline {{
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px;
+                padding: 12px 0;
+            }}
+            .opinion-dot {{
+                width: 20px;
+                height: 20px;
+                border-radius: 4px;
+                display: inline-block;
+            }}
+            .opinion-dot-clean {{ background: #10B981; }}
+            .opinion-dot-disclaimer {{ background: #F59E0B; }}
+            .opinion-dot-adverse {{ background: #DC2626; }}
+            .opinion-dot-pending {{ background: #8B5CF6; }}
             @media (max-width: 600px) {{
                 .container {{ padding: 20px 16px; }}
                 .cover h1 {{ font-size: 2rem; }}
                 .metric-grid {{ grid-template-columns: repeat(2, 1fr); }}
+                .key-figures-grid {{ grid-template-columns: 1fr; }}
             }}
         </style>
     </head>
@@ -1466,7 +1968,7 @@ def generate_book_html():
     return full_html
 
 # ============================================================================
-# RENDER FUNCTIONS
+# VIEWS
 # ============================================================================
 def render_chapter_card(year):
     data = FINANCIAL_DATA[year]
@@ -1524,9 +2026,6 @@ def render_act_header(act_name, act_subtitle, act_color, act_class, years):
     </div>
     """, unsafe_allow_html=True)
 
-# ============================================================================
-# VIEWS
-# ============================================================================
 def render_full_story():
     st.session_state['view_mode'] = 'story'
     
@@ -1598,15 +2097,10 @@ def render_full_story():
     for year in range(2024, 2027):
         render_chapter_card(year)
     
-    # ========================================================================
-    # CONCLUSION WITH SOLUTION PROVERBS
-    # ========================================================================
     st.markdown("---")
     render_conclusion()
 
 def render_conclusion():
-    """Render the conclusion section with solution proverbs."""
-    
     st.markdown("""
     <div class="conclusion-section">
         <h2>🇧🇧 Conclusion: The Path Forward</h2>
